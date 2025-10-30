@@ -10,9 +10,6 @@ date:
 colorlinks: true
 linkcolor: .
 urlcolor: blue
-#bibliography: "Git Workshop.json"
-#csl: apa-numeric-superscript-brackets
-#link-citations: true
 ---
 
 # Alternatives to Git Workshop
