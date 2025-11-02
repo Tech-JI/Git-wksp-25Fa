@@ -11,38 +11,15 @@ colorlinks: true
 linkcolor: .
 urlcolor: blue
 aspectratio: 169
-header-includes: \newcommand{\faint}[1]{\textcolor{gray}{#1}}
+header-includes: |
+  \setbeamertemplate{headline}{}
 ---
 
-# Contents
-
-The what and why
-
-Basic shell commands
-
-Get ready for your first repository
-
-Get your hands dirty
-
-About branches
-
-Beyond this workshop
-
-# Contents
-
-The what and why
-
-\faint{Basic shell commands}
-
-\faint{Get ready for your first repository}
-
-\faint{Get your hands dirty}
-
-\faint{About branches}
-
-\faint{Beyond this workshop}
+\tableofcontents
 
 # The what and why
+
+## The what and why
 
 - Git is a free and open source distributed version control system
 
@@ -56,21 +33,9 @@ The what and why
   - Useful for version control
   - Useful for project collaboration
 
-# Contents
+# Basic shell
 
-\faint{The what and why}
-
-Basic shell commands
-
-\faint{Get ready for your first repository}
-
-\faint{Get your hands dirty}
-
-\faint{About branches}
-
-\faint{Beyond this workshop}
-
-# What is a shell
+## What is a shell
 
 - A command dispatcher/process starter
 
@@ -78,7 +43,7 @@ Basic shell commands
 
 - Gets you more productive
 
-# Working with files and directories in a shell
+## Working with files and directories in a shell
 
 - **Forward slashes** (i.e. "`/`") for separating directories
 
@@ -86,7 +51,7 @@ Basic shell commands
 
 - Working directory
 
-# Common directories
+## Common directories
 
 <!--prettier-ignore-->
 | Description                  | Representation                                                  |
@@ -100,7 +65,7 @@ Basic shell commands
 - `C:\Users\<username>` on Windows native
 - `/home/<username>` on macOS/Linux
 
-# Shell commands
+## Shell commands
 
 \small
 
@@ -120,7 +85,7 @@ Basic shell commands
 
 Further description can be found by executing `man <command>` in non-Windows shell or search online for **manpages**.
 
-# Practice
+## Practice
 
 Exercise 1: Create a file structure like this:
 
@@ -135,23 +100,9 @@ Exercise 1: Create a file structure like this:
    |- exercise-2
 ```
 
-# Contents
-
-\faint{The what and why}
-
-\faint{Basic shell commands}
-
-Get ready for your first repository
-
-\faint{Get your hands dirty}
-
-\faint{About branches}
-
-\faint{Beyond this workshop}
-
 # Get ready for your first repository
 
-Identify your Git environment:
+## Identify your Git environment
 
 | Installation type | Recommended Shell   |
 | ----------------- | ------------------- |
@@ -161,23 +112,23 @@ Identify your Git environment:
 
 NOTE: It's best suggested that you add which directory the `git` executable file is in to your `PATH` environment variable.
 
-# Identify your environment
+## Identify your environment
 
 ![Git Bash](git_bash.png)
 
-# Identify your environment
+## Identify your environment
 
 ![Obsolete Powershell](powershell.png)
 
 TODO: switch to a modern version of Powershell
 
-# Identify your environment
+## Identify your environment
 
 ![Manjaro](manjaro_kitty.png)
 
 TODO: provide screenshots for WSL
 
-# Git configuration
+## Git configuration
 
 - `git config --global user.name <NAME>`
 
@@ -187,21 +138,9 @@ TODO: provide screenshots for WSL
 
 - For [FOCS Git](https://focs.ji.sjtu.edu.cn/git/), `EMAIL` must be your SJTU email
 
-# Contents
+# Get your hands dirty
 
-\faint{The what and why}
-
-\faint{Basic shell commands}
-
-\faint{Get ready for your first repository}
-
-Get your hands dirty
-
-\faint{About branches}
-
-\faint{Beyond this workshop}
-
-# The starting point - repository
+## The starting point - repository
 
 A repository is:
 
@@ -209,7 +148,7 @@ A repository is:
 
 - stored in a `.git` folder in your project root directory
 
-# How to create a repository
+## How to create a repository
 
 **Create a repository = Create a standardized `.git` folder**
 
@@ -217,7 +156,7 @@ A repository is:
 
 - `git clone <url>` to copy a remote (i.e. stored on a server) directory with all its files and histories (i.e. its `.git` folder) to your local computer
 
-# The three zones
+## The three zones
 
 ![The three zones](zones.jpg){ width=300px }
 
@@ -227,7 +166,7 @@ A repository is:
 
 - Repository: "Go", snapshot permanently stored and **immutable**
 
-# The four states
+## The four states
 
 ![Four states of a file](states.jpg){ width=300px }
 
@@ -239,7 +178,7 @@ A repository is:
 
 - Staged: files that are modified and marked to be included in the next snapshot
 
-# How to move files between these zones and states
+## How to move files between these zones and states
 
 | Command                       | Description                                            |
 | ----------------------------- | ------------------------------------------------------ |
@@ -247,21 +186,9 @@ A repository is:
 | `git restore --staged <file>` | Remove file from staging area                          |
 | `git commit -m <message>`     | Commit (i.e. Take a snapshot of) files in staging area |
 
-# Contents
+# About branches
 
-\faint{The what and why}
-
-\faint{Basic shell commands}
-
-\faint{Get ready for your first repository}
-
-\faint{Get your hands dirty}
-
-About branches
-
-\faint{Beyond this workshop}
-
-# What are branches?
+## What are branches?
 
 Branches are:
 
@@ -275,7 +202,7 @@ The branches can be visualized by a tree-like structure.
 
 Type `git log --graph --no-color --pretty=oneline --abbrev-commit` to see a graph of this tree-like structure.
 
-# And why are branches important?
+## And why are branches important?
 
 - Cleaner working tree without disturbance from other changes
 
@@ -283,7 +210,7 @@ Type `git log --graph --no-color --pretty=oneline --abbrev-commit` to see a grap
 
 - Parallel development to maximize productivity
 
-# Working with branches
+## Working with branches
 
 <!--prettier-ignore-->
 |Command|Description|
@@ -293,7 +220,7 @@ Type `git log --graph --no-color --pretty=oneline --abbrev-commit` to see a grap
 |`git merge <from-branch>`|Merge commits from other branches to the current one|
 |`git rebase <from-branch>`|Rebase current branch on another one|
 
-# Merge vs. Rebase
+## Merge vs. Rebase
 
 Branches can be merged or rebased together to combine changes from multiple sources.
 
@@ -305,7 +232,7 @@ Branches can be merged or rebased together to combine changes from multiple sour
 A---B---C---D (master)       A---B---C---D---H (master)
 ```
 
-`H` is a new commit containing all files' latest snapshots from `E`, `F` and `G`.
+- `H` is a new commit containing all files' latest snapshots from `E`, `F` and `G`.
 
 **Rebase**
 
@@ -315,9 +242,9 @@ A---B---C---D (master)       A---B---C---D---H (master)
 A---B---C---D (master)       A---B---E'---F'---G'---C---D (master)
 ```
 
-`E'` has the same snapshot as `E`, `F'` has the same snapshot as `F`, ...
+- `E'` has the same snapshot as `E`, `F'` has the same snapshot as `F`, ...
 
-# What's this 'fast-forward' thing?
+## What's this 'fast-forward' thing?
 
 **Merge** (without fast-forward)
 
@@ -327,7 +254,7 @@ A---B---C---D (master)       A---B---E'---F'---G'---C---D (master)
 A---B (master)              A---B-----------F (master)
 ```
 
-`F` is a new commit.
+- `F` is a new commit.
 
 **Merge** (with fast-forward)
 
@@ -337,7 +264,7 @@ A---B (master)              A---B-----------F (master)
 A---B (master)              A---B---C---D---E (master & fix)
 ```
 
-No new commit is created.
+- No new commit is created.
 
 # Beyond this workshop
 
