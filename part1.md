@@ -1,12 +1,12 @@
 ---
 title:
-- Git Workshop
+  - Git Workshop
 author:
-- Tech JI
+  - Tech JI
 theme:
-- Copenhagen
+  - Copenhagen
 date:
-- November 2025
+  - November 2025
 colorlinks: true
 linkcolor: .
 urlcolor: blue
@@ -22,13 +22,13 @@ urlcolor: blue
 
 - Git is a free and open source distributed version control system
 - Famous software developed with Git
-    - [Linux](https://github.com/torvalds/linux)
-    - [Vim](https://github.com/vim/vim)
-    - [Visual Studio Code](https://github.com/microsoft/vscode)
+  - [Linux](https://github.com/torvalds/linux)
+  - [Vim](https://github.com/vim/vim)
+  - [Visual Studio Code](https://github.com/microsoft/vscode)
 - We learn Git because it's:
-    - Required in ENGL1010J and ENGL1510J
-    - Useful for version control
-    - Useful for project collaboration
+  - Required in ENGL1010J and ENGL1510J
+  - Useful for version control
+  - Useful for project collaboration
 
 # Surprising use of Git
 
@@ -41,11 +41,11 @@ urlcolor: blue
 - It is assumed that you have installed Git already
 - Identify the type of your Git installation
 
-| Installation type | Shell |
-|-------------------|-------|
-| Windows native | Git Bash or Powershell |
-| WSL | WSL Shell |
-| Dual-boot | Linux Shell |
+| Installation type | Shell                  |
+| ----------------- | ---------------------- |
+| Windows native    | Git Bash or Powershell |
+| WSL               | WSL Shell              |
+| Dual-boot         | Linux Shell            |
 
 # Git setup
 
@@ -80,13 +80,13 @@ TODO: image of WSL Shell and Linux Shell
 
 - `cd [DIRECTORY]`: change the working directory to `DIRECTORY`. When `DIRECTORY` is omitted, change the working directory to the home directory instead
 - `ls [OPTION]... [FILE]...`: List information about the `FILE`s (the current directory by default)
-    - `-a`: do not ignore entries starting with .
+  - `-a`: do not ignore entries starting with .
 - `touch <FILE>...`: create the `FILE`(s)
 - `mkdir <DIRECTORY>...`: create the `DIRECTORY`(ies)
 - `mv <SOURCE> <DEST>`, `mv <SOURCE>... <DIRECTORY>`: Rename `SOURCE` to `DEST`, or move `SOURCE`(s) to `DIRECTORY`
 - `cp <SOURCE> <DEST>`, `cp <SOUCRE>... <DIRECTORY>`: Copy `SOURCE` to `DEST`, or multiple `SOURCE`(s) to `DIRECTORY`
 - `rm [OPTION]... [FILE]...`: Remove each specified file. By default, it does not remove directories
-    - `-r`: remove directories and their contents recursively
+  - `-r`: remove directories and their contents recursively
 - To learn more about the commands, use `COMMAND -h` or `COMMAND --help`
 
 # Shell 101
@@ -122,3 +122,19 @@ TODO: image of WSL Shell and Linux Shell
 - Unmodified: files that haven't been modified since last snapshot. Also called committed, from a different POV
 - Modified: files that have been modified but not staged
 - Staged: files that are modified and marked to be included in the next snapshot
+
+# What are branches?
+
+Branches are:
+
+- Different paths the codebase will grow on
+
+- Isolated histories that don't interfere with each other
+
+- Used to separate different feature changes and on-going fixes
+
+# And why are branches important?
+
+- Cleaner working tree without disturbance from other changes
+
+- Safer environment in case something devastating happens
