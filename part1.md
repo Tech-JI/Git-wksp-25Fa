@@ -15,6 +15,8 @@ header-includes: |
   \setbeamertemplate{headline}{}
 ---
 
+## Contents
+
 \tableofcontents
 
 # The what and why
