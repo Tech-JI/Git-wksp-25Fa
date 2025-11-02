@@ -17,3 +17,7 @@ We also provide guidance for how to setup a Github account. You may refer to [`S
 ## TODO
 
 Add WSL and Linux Shell image
+
+Mention right-click to paste in Git Bash
+
+Manual merge
