@@ -21,7 +21,9 @@ Install these dependencies:
 
 Use `make` to build the presentation PDF:
 
-`$ make`
+```sh
+make
+```
 
 The output PDF is `part1.pdf`.
 
