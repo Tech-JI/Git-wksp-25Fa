@@ -235,33 +235,6 @@ A repository is:
 | `git checkout -- <file>`        | Discard changes in working directory                   |
 | `git reset HEAD <file>`         | Unstage files from staging area                        |
 
-## Remote repositories
-
-Working with remote repositories allows you to collaborate with others and backup your code.
-
-### What are remote repositories?
-
-- Remote repositories are versions of your project hosted on the Internet or network
-- They can be on platforms like GitHub, GitLab, Bitbucket, etc.
-- Multiple developers can collaborate on the same project
-
-### Common remote operations
-
-| Command                              | Description                                               |
-| ------------------------------------ | --------------------------------------------------------- |
-| `git remote add <name> <url>`        | Add a remote repository                                   |
-| `git remote -v`                      | List remote repositories                                  |
-| `git push <remote> <branch>`         | Upload local commits to a remote repository               |
-| `git pull <remote> <branch>`         | Download and merge from a remote repository               |
-| `git fetch <remote>`                 | Download objects and refs from a remote repository        |
-
-### Popular Git hosting platforms:
-
-- **GitHub**: Most popular platform, owned by Microsoft
-- **GitLab**: Offers both cloud and self-hosted solutions
-- **Bitbucket**: Popular among enterprise users, owned by Atlassian
-- **FOCS Git**: The internal SJTU Git platform mentioned in this workshop
-
 # About branches
 
 ## What are branches?
@@ -371,6 +344,33 @@ Extend the previous branch structure to this:
      /       /               \
 A---B---C---D---E---J'---K'---M (master)
 ```
+
+## Remote repositories
+
+Working with remote repositories allows you to collaborate with others and backup your code.
+
+### What are remote repositories?
+
+- Remote repositories are versions of your project hosted on the Internet or network
+- They can be on platforms like GitHub, GitLab, Bitbucket, etc.
+- Multiple developers can collaborate on the same project
+
+### Common remote operations
+
+| Command                              | Description                                               |
+| ------------------------------------ | --------------------------------------------------------- |
+| `git remote add <name> <url>`        | Add a remote repository                                   |
+| `git remote -v`                      | List remote repositories                                  |
+| `git push <remote> <branch>`         | Upload local commits to a remote repository               |
+| `git pull <remote> <branch>`         | Download and merge from a remote repository               |
+| `git fetch <remote>`                 | Download objects and refs from a remote repository        |
+
+### Popular Git hosting platforms:
+
+- **GitHub**: Most popular platform, owned by Microsoft
+- **GitLab**: Offers both cloud and self-hosted solutions
+- **Bitbucket**: Popular among enterprise users, owned by Atlassian
+- **FOCS Git**: The internal SJTU Git platform mentioned in this workshop
 
 
 ## Solving Conflicts in Git
