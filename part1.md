@@ -359,6 +359,19 @@ A---B (master)              A---B---C---D---E (master & fix)
 
 - No new commit is created.
 
+## Practice
+
+Extend the previous branch structure to this:
+
+```
+         E---F---G---H---I (feature-a & fix)
+        /                 \
+       /                   \
+      /       J---K (feature-b)
+     /       /               \
+A---B---C---D---E---J'---K'---M (master)
+```
+
 ## Common Git Errors and Troubleshooting
 
 ### Common Issues:
@@ -433,17 +446,6 @@ Before:      After git reset --hard HEAD~1:
 A-B-C        A-B
      ^         ^
    HEAD       HEAD
-## Practice
-
-Extend the previous branch structure to this:
-
-```
-         E---F---G---H---I (feature-a & fix)
-        /                 \
-       /                   \
-      /       J---K (feature-b)
-     /       /               \
-A---B---C---D---E---J'---K'---M (master)
 ```
 
 # Beyond this workshop
