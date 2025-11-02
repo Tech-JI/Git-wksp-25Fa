@@ -1,2 +1,6 @@
 *.pdf
 *.log
+*.err
+.puppeteer.json
+package*.json
+*.tex

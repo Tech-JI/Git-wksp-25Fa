@@ -1,19 +1,31 @@
-# GitWksp
+# GitWksp - Part 1
 
-This [repository](https://sjtu.tangjie.xyz/tj/GitWksp) is for basic git test usage.
+This part of workshop explains basic git usage.
 
-## Preparation for wksp
+## Preparation for workshop
 
-Here is some reference from the previous workshop made by the seniors, thanks!
+Here are some references from the previous workshop made by the seniors. Thank them for their effort.
 
-You may refer to [`Installation_git`](https://github.com/TechJI-2023/Basic_Git_wksp/blob/main/Installation_git.md) and [`Installation_Lazygit`](https://github.com/TechJI-2023/Basic_Git_wksp/blob/main/Installation_Lazygit.md) in this repo.
+- [`Git Installation`](https://github.com/TechJI-2023/Basic_Git_wksp/blob/main/Installation_git.md)
+- [`Lazygit Installation`](https://github.com/TechJI-2023/Basic_Git_wksp/blob/main/Installation_Lazygit.md)
+- [`GitHub Setup`](https://github.com/TechJI-2023/Basic_Git_wksp/blob/main/Setup_Github.md)
 
-We also provide guidance for how to setup a Github account. You may refer to [`Setup_Github`](https://github.com/TechJI-2023/Basic_Git_wksp/blob/main/Setup_Github.md) in this repository.
+## Build the presentation PDF
 
-## Build
+Install these dependencies:
 
-`$ pandoc -t beamer -o part1.pdf part1.md`
+- [Pandoc](https://github.com/jgm/pandoc/blob/main/INSTALL.md)
+- [TeX Live](https://tug.org/texlive/acquire.html)
+- [GNU Make](https://www.gnu.org/software/make/)
+- [Mermaid Filter](https://github.com/raghur/mermaid-filter)
+
+Use `make` to build the presentation PDF:
+
+`$ make`
+
+The output PDF is `part1.pdf`.
 
 ## TODO
 
-Add WSL and Linux Shell image
+- [ ] Add images back when necessary
+- [ ] Add more exercises
