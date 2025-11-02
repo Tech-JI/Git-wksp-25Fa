@@ -220,6 +220,20 @@ Type `git log --graph --no-color --pretty=oneline --abbrev-commit` to see a grap
 |`git merge <from-branch>`|Merge commits from other branches to the current one|
 |`git rebase <from-branch>`|Rebase current branch on another one|
 
+## Practice
+
+Create a branch structure like this:
+
+```
+          G---H---I (fix)
+         /
+        E---F (feature-a)
+       /
+      /       J---K (feature-b)
+     /       /
+A---B---C---D---E (master)
+```
+
 ## Merge vs. Rebase
 
 Branches can be merged or rebased together to combine changes from multiple sources.
@@ -265,6 +279,19 @@ A---B (master)              A---B---C---D---E (master & fix)
 ```
 
 - No new commit is created.
+
+## Practice
+
+Extend the previous branch structure to this:
+
+```
+         E---F---G---H---I (feature-a & fix)
+        /                 \
+       /                   \
+      /       J---K (feature-b)
+     /       /               \
+A---B---C---D---E---J'---K'---M (master)
+```
 
 # Beyond this workshop
 
