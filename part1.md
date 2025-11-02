@@ -247,6 +247,20 @@ A repository is:
 | `git restore --staged <file>` | Remove file from staging area                          |
 | `git commit -m <message>`     | Commit (i.e. Take a snapshot of) files in staging area |
 
+# Contents
+
+\faint{The what and why}
+
+\faint{Basic shell commands}
+
+\faint{Get ready for your first repository}
+
+\faint{Get your hands dirty}
+
+About branches
+
+\faint{Beyond this workshop}
+
 # What are branches?
 
 Branches are:
@@ -257,11 +271,73 @@ Branches are:
 
 - Used to separate different feature changes and on-going fixes
 
+The branches can be visualized by a tree-like structure.
+
+Type `git log --graph --no-color --pretty=oneline --abbrev-commit` to see a graph of this tree-like structure.
+
 # And why are branches important?
 
 - Cleaner working tree without disturbance from other changes
 
 - Safer environment in case something devastating happens
+
+- Parallel development to maximize productivity
+
+# Working with branches
+
+<!--prettier-ignore-->
+|Command|Description|
+|----|-------|
+|`git branch <name>`|Create a branch with `name`|
+|`git checkout <name>`|Switch current branch to `name`|
+|`git merge <from-branch>`|Merge commits from other branches to the current one|
+|`git rebase <from-branch>`|Rebase current branch on another one|
+
+# Merge vs. Rebase
+
+Branches can be merged or rebased together to combine changes from multiple sources.
+
+**Merge**
+
+```
+      E---F---G (fix)              E---F---G (fix)
+     /                  ==>       /         \
+A---B---C---D (master)       A---B---C---D---H (master)
+```
+
+`H` is a new commit containing all files' latest snapshots from `E`, `F` and `G`.
+
+**Rebase**
+
+```
+      E---F---G (fix)              E---F---G (fix)
+     /                  ==>       /
+A---B---C---D (master)       A---B---E'---F'---G'---C---D (master)
+```
+
+`E'` has the same snapshot as `E`, `F'` has the same snapshot as `F`, ...
+
+# What's this 'fast-forward' thing?
+
+**Merge** (without fast-forward)
+
+```
+      E---F---G (fix)              E---F---G (fix)
+     /                  ==>       /         \
+A---B---C---D (master)       A---B---C---D---H (master)
+```
+
+`H` is a new commit.
+
+**Merge** (with fast-forward)
+
+```
+      E---F---G (fix)
+     /                  ==>
+A---B---C---D (master)       A---B---C---D---E---F---G (master & fix)
+```
+
+No new commit is created. `C` and `D` have no confliction with `E`, `F` and `G`.
 
 # Beyond this workshop
 
