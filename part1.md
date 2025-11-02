@@ -322,22 +322,22 @@ A---B---C---D (master)       A---B---E'---F'---G'---C---D (master)
 **Merge** (without fast-forward)
 
 ```
-      E---F---G (fix)              E---F---G (fix)
-     /                  ==>       /         \
-A---B---C---D (master)       A---B---C---D---H (master)
+      C---D---E (fix)             C---D---E (fix)
+     /                 ==>       /         \
+A---B (master)              A---B-----------F (master)
 ```
 
-`H` is a new commit.
+`F` is a new commit.
 
 **Merge** (with fast-forward)
 
 ```
-      E---F---G (fix)
-     /                  ==>
-A---B---C---D (master)       A---B---C---D---E---F---G (master & fix)
+      C---D---E (fix)
+     /                 ==>
+A---B (master)              A---B---C---D---E (master & fix)
 ```
 
-No new commit is created. `C` and `D` have no confliction with `E`, `F` and `G`.
+No new commit is created.
 
 # Beyond this workshop
 
