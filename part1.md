@@ -372,6 +372,90 @@ Extend the previous branch structure to this:
 A---B---C---D---E---J'---K'---M (master)
 ```
 
+
+## Solving Conflicts in Git
+
+### What is a merge conflict?
+
+A merge conflict occurs when Git cannot automatically reconcile differences between two commits during a merge operation. This typically happens when the same lines in the same file have been modified in different branches that are being merged.
+
+### How to identify a conflict
+
+When a merge conflict occurs, Git will:
+1. Mark the conflicted files as "unmerged"
+2. Insert conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`) directly into the affected files
+3. Report which files have conflicts
+
+Check the status with: `git status`
+
+### Understanding conflict markers
+
+When you open a conflicted file, you'll see sections like this:
+
+```
+<<<<<<< HEAD
+This is the content from the current branch
+=======
+This is the content from the branch being merged
+>>>>>>> branch-name
+```
+
+The content between `<<<<<<< HEAD` and `=======` is from your current branch.
+The content between `=======` and `>>>>>>> branch-name` is from the branch you're merging.
+
+### Steps to resolve a conflict
+
+**Step 1**: Identify conflicted files using `git status`
+
+**Step 2**: Open each conflicted file and look for conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`)
+
+**Step 3**: Edit the file to resolve the conflict by:
+- Deciding which changes to keep (from either branch or a combination)
+- Removing the conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`)
+- Making any additional changes needed to properly integrate the code
+
+**Step 4**: Add the resolved files to the staging area:
+- `git add <filename>` or `git add .` to stage all resolved files
+
+**Step 5**: Complete the merge:
+- `git commit -m "Resolve merge conflict in <filename>"`
+
+### Practical example
+
+Let's say we have a conflict in `README.md`:
+
+```
+<<<<<<< HEAD
+# My Project
+This is the main branch content
+=======
+# My Project
+This is the feature branch content
+>>>>>>> feature-branch
+```
+
+After deciding which content to keep (or combining both), the resolved file should look like:
+
+```
+# My Project
+This is the content I want to keep after resolving the conflict
+```
+
+### Tips for conflict resolution
+
+- Use a text editor with syntax highlighting to better see conflict markers
+- Some editors have special features for visualizing and resolving conflicts
+- Communicate with team members when you're unsure which changes to keep
+- Test your code after resolving conflicts to ensure everything still works
+- Use `git diff` to review what you've changed before committing
+- Consider using `git merge-tool` for complex conflicts
+
+### Common tools for resolving conflicts
+
+- **VS Code**: Has built-in conflict resolution interface
+- **Vim**: Use `:Gdiff` with vim-fugitive plugin
+- **Dedicated tools**: `meld`, `p4merge`, `bc` (Beyond Compare)
+
 ## Common Git Errors and Troubleshooting
 
 ### Common Issues:
