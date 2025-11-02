@@ -422,7 +422,7 @@ A---B---C---D---E---J'---K'---M (master)
 - **Bitbucket**: Popular among enterprise users, owned by Atlassian
 - **FOCS Git**: The internal SJTU Git platform mentioned in this workshop
 
-# Solving Conflicts in Git
+# Solving conflicts in Git
 
 ## What is a merge conflict?
 
