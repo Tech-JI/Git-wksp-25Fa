@@ -1,124 +1,256 @@
 ---
 title:
-- Git Workshop
+  - Git Workshop
 author:
-- Tech JI
+  - Tech GC
 theme:
-- Copenhagen
+  - Copenhagen
 date:
-- November 2025
+  - November 2025
 colorlinks: true
 linkcolor: .
 urlcolor: blue
+aspectratio: 169
+header-includes: \newcommand{\faint}[1]{\textcolor{gray}{#1}}
 ---
 
-# Alternatives to Git Workshop
+# Contents
 
-- Google "how to use git", "git tutorial"
-- [Pro Git](https://git-scm.com/book/en/v2)
-- Ask AI
+The what and why
 
-# The what and the why
+Basic shell commands
+
+Get ready for your first repository
+
+Get your hands dirty
+
+About branches
+
+Beyond this workshop
+
+# Contents
+
+The what and why
+
+\faint{Basic shell commands}
+
+\faint{Get ready for your first repository}
+
+\faint{Get your hands dirty}
+
+\faint{About branches}
+
+\faint{Beyond this workshop}
+
+# The what and why
 
 - Git is a free and open source distributed version control system
+
 - Famous software developed with Git
-    - [Linux](https://github.com/torvalds/linux)
-    - [Vim](https://github.com/vim/vim)
-    - [Visual Studio Code](https://github.com/microsoft/vscode)
+  - [Linux](https://github.com/torvalds/linux)
+  - [Vim](https://github.com/vim/vim)
+  - [Visual Studio Code](https://github.com/microsoft/vscode)
+
 - We learn Git because it's:
-    - Required in ENGL1010J and ENGL1510J
-    - Useful for version control
-    - Useful for project collaboration
+  - Required in ENGL1010J and ENGL1510J
+  - Useful for version control
+  - Useful for project collaboration
 
-# Surprising use of Git
+# Contents
 
-- [pass](https://www.passwordstore.org/): a password manager using Git to track and sync passwords
-- [sindresorhus/awesome](https://github.com/sindresorhus/awesome): an online Git repository sharing educational material
-- Today, we're gonna build an SJTU Survival Guide with Git
+\faint{The what and why}
 
-# Git setup
+Basic shell commands
 
-- It is assumed that you have installed Git already
-- Identify the type of your Git installation
+\faint{Get ready for your first repository}
 
-| Installation type | Shell |
-|-------------------|-------|
-| Windows native | Git Bash or Powershell |
-| WSL | WSL Shell |
-| Dual-boot | Linux Shell |
+\faint{Get your hands dirty}
 
-# Git setup
+\faint{About branches}
+
+\faint{Beyond this workshop}
+
+# What is a shell
+
+- A command dispatcher/process starter
+
+- A more advanced and direct interface with the OS
+
+- Gets you more productive
+
+# Working with files and directories in a shell
+
+- **Forward slashes** (i.e. "`/`") for separating directories
+
+- One uniformed tree-like structure (non-Windows environment)
+
+- Working directory
+
+# Common directories
+
+<!--prettier-ignore-->
+| Description                  | Representation                                                  |
+| ---------------------------- | ----------------------------------- |
+| Home directory               | `~`                                                             |
+| Root directory (non-Windows) | `/`                                                             |
+| Drive directories (Windows)  | `/c/`, `/d/`, ... in Git Bash; `/mnt/c/`, `/mnt/d/`, ... in WSL |
+
+`~` redirects to:
+
+- `C:\Users\<username>` on Windows native
+- `/home/<username>` on macOS/Linux
+
+# Shell commands
+
+\small
+
+<!--prettier-ignore-->
+| Command                     | Action                                                             |
+| --------------------------- | --------------------------------------- |
+| `cd [directory]`            | Change working directory                                           |
+| `pwd`                       | Print working directory                                            |
+| `ls [options] [directory]`  | List directory contents                                            |
+| `touch <file>`              | Create a file (if it doesn't exist)                                |
+| `mkdir <directory>`         | Make (i.e. "Create") a directory                                   |
+| `mv <source> <destination>` | Move files/directories from `source` to `destination` |
+| `cp <source> <destination>` | Copy files/directories from `source` to `destination` |
+| `rm <file>`                 | Remove (i.e. Permanently delete) a file                            |
+
+\normalsize
+
+Further description can be found by executing `man <command>` in non-Windows shell or search online for **manpages**.
+
+# Practice
+
+Exercise 1: Create a file structure like this:
+
+```
+~
+|- git-wksp
+   |
+   |- exercise-1
+   |  |
+   |  |- question-1
+   |
+   |- exercise-2
+```
+
+# Contents
+
+\faint{The what and why}
+
+\faint{Basic shell commands}
+
+Get ready for your first repository
+
+\faint{Get your hands dirty}
+
+\faint{About branches}
+
+\faint{Beyond this workshop}
+
+# Get ready for your first repository
+
+Identify your Git environment:
+
+| Installation type | Recommended Shell   |
+| ----------------- | ------------------- |
+| Windows native    | Powershell/Git Bash |
+| WSL               | Bash/Zsh            |
+| Linux native      | Bash/Zsh            |
+
+NOTE: It's best suggested that you add which directory the `git` executable file is in to your `PATH` environment variable.
+
+# Identify your environment
 
 ![Git Bash](git_bash.png)
 
-# Git setup
+# Identify your environment
 
-![Powershell](powershell.png)
+![Obsolete Powershell](powershell.png)
 
-# Git setup
+TODO: switch to a modern version of Powershell
 
-TODO: image of WSL Shell and Linux Shell
+# Identify your environment
 
-# Shell 101
+![Manjaro](manjaro_kitty.png)
 
-- Shells may differ greatly from each other. For the sake of simplicity, we only use Git Bash as an example, which is similar to WSL Shell and Linux Shell
-- A few conventions: Monospace is used for commands and code. Brackets ([]) surround optional arguments, angle brackets (<>) surround mandatory arguments, vertical bars (|) separate choices, and ellipses (...) can be repeated.
-
-# Shell 101
-
-![Understanding Git Bash](understanding_git_bash.png)
-
-# Shell 101
-
-- Git Bash paths use slashes. So do WSL Shell and Linux Shell
-- Initial `~` stands for the home directory, which, in Git Bash, mirrors to `C:\Users\<USERNAME>` on Windows
-- Initial `/` stands for the root directory, which, in Git Bash, mirrors to the Git installation path.
-- Additionally, `/c`, `/d`, etc. in Git Bash mirror to `C:`, `D:`, etc. on Windows, respectively
-- The above symbols mirror to different locations in WSL Shell and Linux Shell
-
-# Shell 101
-
-- `cd [DIRECTORY]`: change the working directory to `DIRECTORY`. When `DIRECTORY` is omitted, change the working directory to the home directory instead
-- `ls [OPTION]... [FILE]...`: List information about the `FILE`s (the current directory by default)
-    - `-a`: do not ignore entries starting with .
-- `touch <FILE>...`: create the `FILE`(s)
-- `mkdir <DIRECTORY>...`: create the `DIRECTORY`(ies)
-- `mv <SOURCE> <DEST>`, `mv <SOURCE>... <DIRECTORY>`: Rename `SOURCE` to `DEST`, or move `SOURCE`(s) to `DIRECTORY`
-- `cp <SOURCE> <DEST>`, `cp <SOUCRE>... <DIRECTORY>`: Copy `SOURCE` to `DEST`, or multiple `SOURCE`(s) to `DIRECTORY`
-- `rm [OPTION]... [FILE]...`: Remove each specified file. By default, it does not remove directories
-    - `-r`: remove directories and their contents recursively
-- To learn more about the commands, use `COMMAND -h` or `COMMAND --help`
-
-# Shell 101
-
-- If you have installed and added VS Code to the `PATH` environment variable on Windows, you can also use the command `code <FILE>` to open `FILE` in VS Code. If you haven't already, follow the guide [for Windows 10](https://stackoverflow.com/questions/44272416/add-a-folder-to-the-path-environment-variable-in-windows-10-with-screenshots) or [for Windows 11](https://superuser.com/questions/1861276/how-to-set-a-folder-to-the-path-environment-variable-in-windows-11). Note that you'll have to reopen Git Bash after this
-- Alternatively, use `notepad <FILE>` to open `FILE` in Notepad
-- Technically, `cd` is the only command that's absolutely necessary for this workshop. Everything else can be done on File Explorer. Nevertheless, try to learn the commands since you'll need them in the future
-- Practice: create folder `~/Survive-SJTU` and create a file named `README.md` in it. Then write a few pieces of survival guide in it. You may want to follow [the Markdown syntax](https://daringfireball.net/projects/markdown/syntax)
+TODO: provide screenshots for WSL
 
 # Git configuration
 
-- Pro Git p. 21 "First-Time Git Setup"
 - `git config --global user.name <NAME>`
-- `git config --global user.email <EMAIL>`
-- Enclose `NAME` in double quotes if it contains spaces
-- For [focs](https://focs.ji.sjtu.edu.cn/git/), `EMAIL` must be your SJTU email
-- Refer to Pro Git p. 479 if you need to change the text editor Git uses
 
-# Basic Git Workflow
+- `git config --global user.email <EMAIL>`
+
+- Enclose `NAME` in double quotes if it contains spaces
+
+- For [FOCS Git](https://focs.ji.sjtu.edu.cn/git/), `EMAIL` must be your SJTU email
+
+# Contents
+
+\faint{The what and why}
+
+\faint{Basic shell commands}
+
+\faint{Get ready for your first repository}
+
+Get your hands dirty
+
+\faint{About branches}
+
+\faint{Beyond this workshop}
+
+# The starting point - repository
+
+A repository is:
+
+- a central storage location for a project's files and their complete revision history
+
+- stored in a `.git` folder in your project root directory
+
+# How to create a repository
+
+**Create a repository = Create a standardized `.git` folder**
+
+- `git init` in local existing project directory
+
+- `git clone <url>` to copy a remote (i.e. stored on a server) directory with all its files and histories (i.e. its `.git` folder) to your local computer
+
+# The three zones
 
 ![The three zones](zones.jpg){ width=300px }
 
-- Pro Git p. 16 "The Three States"
 - Working directory: "Ready", status quo of files on your computer
-- Staging area: "Set", files to be committed
-- Repository: "Go", snapshot permanently stored
 
-# Basic Git Workflow
+- Staging area: "Set", files to be committed
+
+- Repository: "Go", snapshot permanently stored and **immutable**
+
+# The four states
 
 ![Four states of a file](states.jpg){ width=300px }
 
 - Untracked: files Git has yet to know about
-- Unmodified: files that haven't been modified since last snapshot. Also called committed, from a different POV
+
+- Unmodified: files that haven't been modified since last snapshot (can also be called committed from a different POV)
+
 - Modified: files that have been modified but not staged
+
 - Staged: files that are modified and marked to be included in the next snapshot
+
+# How to move files between these zones and states
+
+| Command                       | Description                                            |
+| ----------------------------- | ------------------------------------------------------ |
+| `git add <file>`              | Add file to staging area                               |
+| `git restore --staged <file>` | Remove file from staging area                          |
+| `git commit -m <message>`     | Commit (i.e. Take a snapshot of) files in staging area |
+
+# Beyond this workshop
+
+- Google
+
+- [Pro Git](https://git-scm.com/book/en/v2)
+
+- AI assistant
