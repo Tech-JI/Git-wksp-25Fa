@@ -10,7 +10,7 @@ date:
 colorlinks: true
 linkcolor: .
 urlcolor: blue
-aspectratio: 169
+#aspectratio: 169
 header-includes: |
   \setbeamertemplate{headline}{}
 ---
@@ -19,166 +19,183 @@ header-includes: |
 
 \tableofcontents
 
-# The what and why
+# Alternatives to Git Workshop
+
+- Google "how to use git", "git tutorial"
+
+- [Pro Git](https://git-scm.com/book/en/v2)
+
+- Ask AI
+
+# Introduction
+
+## The what and the why
 
 - Git is a free and open source distributed version control system
 
 - Famous software developed with Git
+
   - [Linux](https://github.com/torvalds/linux)
+
   - [Vim](https://github.com/vim/vim)
+
   - [Visual Studio Code](https://github.com/microsoft/vscode)
 
 - We learn Git because it's:
+
   - Required in ENGL1010J and ENGL1510J
+
   - Useful for version control
+
   - Useful for project collaboration
 
-# Basic shell
+## Surprising use of Git
 
-## What is a shell
+- [pass](https://www.passwordstore.org/): a password manager using Git to track and sync passwords
 
-- A command dispatcher/process starter
+- [sindresorhus/awesome](https://github.com/sindresorhus/awesome): an online Git repository sharing educational material
 
-- A more advanced and direct interface with the OS
+- Today, we're gonna build an SJTU Survival Guide with Git
 
-- Gets you more productive
+# Git setup
 
-## Working with files and directories in a shell
+- It is assumed that you have installed Git already
 
-- **Forward slashes** (i.e. "`/`") for separating directories
+- Identify the type of your Git installation
 
-- One uniformed tree-like structure (non-Windows environment)
+| Installation type | Shell |
+|-------------------|-------|
+| Windows native | Git Bash or Powershell |
+| WSL | WSL Shell |
+| Dual-boot | Linux Shell |
 
-- Working directory
+## Git Bash UI
+
+![Git Bash](git_bash.png)
+
+## Powershell UI
+
+![Powershell](powershell.png)
+
+# Shell 101
+
+## What is shell
+
+- Command interpreters, allowing users to give commands to their OS
+
+- A layer between system function calls and the user
+
+- In particular, we use shell in this workshop to send Git commands to our OS
+
+- We use Git Bash as exmample in this workshop. WSL shell and Linux shell are pretty similar
+
+- A few conventions: Monospace is used for commands and code. Brackets ([]) surround optional arguments, angle brackets (<>) surround mandatory arguments, vertical bars (|) separate choices, and ellipses (...) can be repeated.
+
+## Git Bash UI annotated
+
+![Understanding Git Bash](understanding_git_bash.png)
+
+## Directories and paths
+
+- Git Bash uses slashes (`/`) as directory delimiters. So do WSL shell and Linux shell
+
+- Git Bash on Windows is case-insensitive, so is WSL shell. Linux shell is case-sensitive
+
+- Working directory is the directory you're currently in
 
 ## Common directories
 
 <!--prettier-ignore-->
 | Description                  | Representation                                                  |
-| ---------------------------- | ----------------------------------- |
+| ---------------------------- | --------------------------------------------------------------- |
 | Home directory               | `~`                                                             |
-| Root directory (non-Windows) | `/`                                                             |
+| Root directory               | `/`                                                             |
 | Drive directories (Windows)  | `/c/`, `/d/`, ... in Git Bash; `/mnt/c/`, `/mnt/d/`, ... in WSL |
 
-`~` redirects to:
+- `~` mirrors to `C:\Users\<USERNAME>` on Windows
 
-- `C:\Users\<username>` on Windows native
-- `/home/<username>` on macOS/Linux
+- In Git Bash, `/` mirrors to Git installation path on Windows
 
-## Shell commands
+## Relative directories
+
+<!--prettier-ignore-->
+| Description       | Representation |
+| ----------------- | -------------- |
+| Current directory | `.` |
+| Parent directory | `..` |
+
+- These directories can appear anywhere in a path
+
+- When appearing first in a path, these are relative to the current working directory
+
+- E.g. `/a/b/./c` is the same as `/a/b/c`, and `/a/b/../c` is the same as `/a/c`
+
+- E.g. If you're in `~/a/b`, then `../c` is the same as `~/a/c`
+
+## Basic shell commands
 
 \small
 
 <!--prettier-ignore-->
-| Command                     | Action                                                             |
-| --------------------------- | --------------------------------------- |
-| `cd [directory]`            | Change working directory                                           |
-| `pwd`                       | Print working directory                                            |
-| `ls [options] [directory]`  | List directory contents                                            |
-| `touch <file>`              | Create a file (if it doesn't exist)                                |
-| `mkdir <directory>`         | Make (i.e. "Create") a directory                                   |
-| `mv <source> <destination>` | Move files/directories from `source` to `destination` |
-| `cp <source> <destination>` | Copy files/directories from `source` to `destination` |
-| `rm <file>`                 | Remove (i.e. Permanently delete) a file                            |
+| Command                      | Action                                                                |
+| ---------------------------- | --------------------------------------------------------------------- |
+| `cd [DIRECTORY]`             | Change working directory to `DIRECTORY`, or home directory by default |
+| `pwd`                        | Print working directory                                               |
+| `ls [OPTION]... [DIRECTORY]` | List information about `DIRECTORY`, or current directory by default   |
+| Option `-a`                  | Do not ignore entries starting with `.`                               |
+| Option `-l`                  | Use a long listing format                                             |
+| `touch <FILE>`               | Create the `FILE` if it doesn't exist                                 |
+| `mkdir <DIRECTORY>`          | Create `DIRECTORY`                                                    |
+| `cp <SOURCE> <DEST>`         | Copy `SOURCE` to `DEST`                                               |
+| `cp <SOURCE> <DIRECTORY>`    | Copy `SOURCE` to `DIRECTORY`                                          |
 
 \normalsize
 
-Further description can be found by executing `man <command>` in non-Windows shell or search online for **manpages**.
+## Basic shell commands
+
+Cont.
+
+\small
+
+<!--prettier-ignore-->
+| Command                      | Action                                                                |
+| ---------------------------- | --------------------------------------------------------------------- |
+| `mv <SOURCE> <DEST>`         | Rename `SOURCE` to `DEST`                                             |
+| `mv <SOURCE> <DIRECTORY>`    | Move `SOURCE` to `DIRECTORY`                                          |
+| `rm [OPTION]... <FILE>`      | Remove `FILE`. It does not remove directories by default              |
+| Option `-r`                  | Remove directories and their contents recursively                     |
+
+\normalsize
+
+- Use `COMMAND -h` or `COMMAND --help` to get more information, or google "COMMAND man page"
+
+## Invoke text editors in shell
+
+- If you have installed and added VS Code to the `PATH` environment variable on Windows, you can also use the command `code <FILE>` to open `FILE` in VS Code. If you haven't already, follow the guide [for Windows 10](https://stackoverflow.com/questions/44272416/add-a-folder-to-the-path-environment-variable-in-windows-10-with-screenshots) or [for Windows 11](https://superuser.com/questions/1861276/how-to-set-a-folder-to-the-path-environment-variable-in-windows-11). Note that you'll have to reopen Git Bash after this
+
+- Alternatively, use `notepad <FILE>` to open `FILE` in Notepad
+
+## Tips
+
+- Right-click to paste in Git Bash
+
+- If Ctrl+V doesn't work, use Ctrl+Shift+V to paste in WSL shell
+
+## Outlook
+
+- There are more advanced topics in shell that will not be covered in this workshop, such as command chaining and shell scripting
+
+- For those who are interested, there's [a very nice guide](https://mywiki.wooledge.org/BashGuide) accompanied with [Bash Pitfalls](https://mywiki.wooledge.org/BashPitfalls) for Bash, a widely used shell on Linux
 
 ## Practice
 
-Create a file structure like this:
+- Technically, `cd` is the only command that's absolutely necessary for this workshop. Everything else can be done on File Explorer. Nevertheless, try to learn the commands since you'll need them in the future
 
-```
-~
-|- git-wksp
-   |
-   |- exercise-1
-   |  |
-   |  |- question-1
-   |
-   |- exercise-2
-```
+- Create folder `~/Survive-SJTU` and create a file named `README.md` in it. Then write a few pieces of survival guide in it. You may want to follow [the Markdown syntax](https://daringfireball.net/projects/markdown/syntax)
 
-## Practice
+# Git configuration
 
-**Step-by-step instructions:**
-
-1. Navigate to your home directory: `cd ~`
-
-2. Create the main folder: `mkdir git-wksp`
-
-3. Enter the folder: `cd git-wksp`
-
-4. Create exercise-1 directory: `mkdir exercise-1`
-
-5. Create exercise-2 directory: `mkdir exercise-2`
-
-6. Enter exercise-1: `cd exercise-1`
-
-7. Create question-1: `touch question-1`
-
-8. Verify: `ls -la`
-
-## Advanced file management tips
-
-1. Create multiple directories at once: `mkdir -p project/{src,docs,tests}`
-
-2. Copy a file: `cp question-1 ../exercise-2/new-question-1`
-
-3. Move a file: `mv ../exercise-2/new-question-1 .`
-
-4. Remove a file: `rm question-1`
-
-5. List all files recursively: `find . -type f`
-
-# Get ready for your first repository
-
-## Identify your coding environment
-
-| Environment type | Recommended Shell   |
-| ---------------- | ------------------- |
-| Linux native/WSL | Bash/Zsh            |
-| Windows native   | Powershell/Git Bash |
-| macOS            | Zsh                 |
-
-## Installing Git
-
-**Linux native/WSL**
-
-Install using your package manager:
-
-- Debian-based (Debian, Ubuntu, ...): `sudo apt-get install git`
-
-- CentOS/RHEL/Fedora: `sudo yum install git` or `sudo dnf install git`
-
-- Arch-based (Arch, Manjaro ...): `sudo pacman -S git`
-
-...
-
-## Installing Git
-
-**Windows native**
-
-1. Download Git from [git-scm.com](https://git-scm.com/download/win) or [TsingHua mirror](https://mirrors.tuna.tsinghua.edu.cn/github-release/git-for-windows/git/LatestRelease/)
-
-2. Run the installer with default settings
-
-NOTE: It's best suggested that you add the `git` executable to your `PATH` environment variable.
-
-3. Choose your preferred text editor (Vim, VS Code, etc.)
-
-4. Choose terminal emulator (Git Bash is recommended)
-
-5. Complete the installation
-
-**macOS**
-
-Install Xcode command line tools: `xcode-select --install`
-
-Or install using Homebrew: `brew install git`
-
-## Git configuration
+- Pro Git p. 20 "First-Time Git Setup"
 
 - `git config --global user.name <NAME>`
 
@@ -186,7 +203,9 @@ Or install using Homebrew: `brew install git`
 
 - Enclose `NAME` in double quotes if it contains spaces
 
-- For [FOCS Git](https://focs.ji.sjtu.edu.cn/git/), `EMAIL` must be your SJTU email
+- For [focs](https://focs.ji.sjtu.edu.cn/git/), `EMAIL` must be your SJTU email
+
+- Refer to Pro Git p. 478 if you need to change the text editor Git uses. We recommend VS Code or Notepad
 
 # Get your hands dirty
 
@@ -666,11 +685,3 @@ A---B
 :::: {.column width=22%}
 ::::
 :::
-
-# Beyond this workshop
-
-- Google
-
-- [Pro Git](https://git-scm.com/book/en/v2)
-
-- AI assistant

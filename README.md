@@ -32,5 +32,5 @@ The output PDF is `part1.pdf`.
 - [ ] Add images back when necessary
 - [ ] Add more exercises
 - [ ] Add WSL and Linux Shell image
-- [ ] Mention right-click to paste in Git Bash
+- [x] Mention right-click to paste in Git Bash
 - [ ] Manual merge
