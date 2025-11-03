@@ -13,6 +13,7 @@ urlcolor: blue
 #aspectratio: 169
 header-includes: |
   \setbeamertemplate{headline}{}
+  \lstset{basicstyle=\ttfamily,frame=single,frameround=tttt,columns=fullflexible,keepspaces=true}
 ---
 
 ## Contents
@@ -34,7 +35,6 @@ header-includes: |
 - Git is a free and open source distributed version control system
 
 - Famous software developed with Git
-
   - [Linux](https://github.com/torvalds/linux)
 
   - [Vim](https://github.com/vim/vim)
@@ -42,7 +42,6 @@ header-includes: |
   - [Visual Studio Code](https://github.com/microsoft/vscode)
 
 - We learn Git because it's:
-
   - Required in ENGL1010J and ENGL1510J
 
   - Useful for version control
@@ -63,11 +62,11 @@ header-includes: |
 
 - Identify the type of your Git installation
 
-| Installation type | Shell |
-|-------------------|-------|
-| Windows native | Git Bash or Powershell |
-| WSL | WSL Shell |
-| Dual-boot | Linux Shell |
+| Installation type | Shell                  |
+| ----------------- | ---------------------- |
+| Windows native    | Git Bash or Powershell |
+| WSL               | WSL Shell              |
+| Dual-boot         | Linux Shell            |
 
 ## Git Bash UI
 
@@ -313,7 +312,14 @@ Branches are:
 
 The branches can be visualized by a tree-like structure.
 
-Type `git log --graph --no-color --pretty=oneline --abbrev-commit` to see a graph of this tree-like structure.
+Use `git log` to see a graph of this tree-like structure.
+\small
+
+```sh
+git log --graph --no-color --pretty=oneline --abbrev-commit
+```
+
+\normalsize
 
 ## And why are branches important?
 
@@ -330,19 +336,19 @@ Type `git log --graph --no-color --pretty=oneline --abbrev-commit` to see a grap
 |----|-------|
 |`git branch <name>`|Create a branch with `name`|
 |`git checkout <name>`|Switch current branch to `name`|
-|`git merge <from-branch>`|Merge commits from other branches to the current one|
-|`git rebase <from-branch>`|Rebase current branch on another one|
+|`git merge <from>`|Merge commits from other branches to the current one|
+|`git rebase <from>`|Rebase current branch on another one|
 
 ## Practice
 
-Create a branch structure like this:
+Create a branch structure like this in your Survival Guide repository:
 
 ```
-          G---H---I (fix)
+          G---H---I (fix-grammar)
          /
-        E---F (feature-a)
+        F (new-point-a)
        /
-      /       J---K (feature-b)
+      /       J---K (new-point-b)
      /       /
 A---B---C---D---E (master)
 ```
@@ -354,45 +360,60 @@ Branches can be merged or rebased together to combine changes from multiple sour
 **Merge**
 
 ```
-      E---F---G (fix)              E---F---G (fix)
-     /                  ==>       /         \
-A---B---C---D (master)       A---B---C---D---H (master)
+      E---F---G (fix)            E---F---G (fix)
+     /                 ==>      /         \
+A---B---C---D (master)     A---B---C---D---H (master)
 ```
 
 - `H` is a new commit containing all files' latest snapshots from `E`, `F` and `G`.
-- Keep complete historical records.
+- Keeps complete historical records.
 - Non destructive operation.
+
+## Merge vs. Rebase
+
+Branches can be merged or rebased together to combine changes from multiple sources.
 
 **Rebase**
 
+\small
+
 ```
-      E---F---G (fix)              E---F---G (fix)
-     /                  ==>       /
-A---B---C---D (master)       A---B---E'---F'---G'---C---D (master)
+      E---F (fix)                E---F (fix)
+     /                 ==>      /
+A---B---C---D (master)     A---B---E'---F'---C---D (master)
 ```
 
-- `E'` has the same snapshot as `E`, `F'` has the same snapshot as `F`, ...
-- Create linear history and Rewrite submission history.
+\normalsize
+
+- `E'` has the same snapshot as `E`, `F'` has the same snapshot as `F`
+- Creates linear history and rewrite commit history.
 
 ## What's this 'fast-forward' thing?
 
 **Merge** (without fast-forward)
+\small
 
 ```
-      C---D---E (fix)             C---D---E (fix)
-     /                 ==>       /         \
-A---B (master)              A---B-----------F (master)
+      C---D---E (fix)            C---D---E (fix)
+     /                ==>       /         \
+A---B (master)             A---B-----------F (master)
 ```
+
+\normalsize
 
 - `F` is a new commit.
 
 **Merge** (with fast-forward)
 
+\small
+
 ```
       C---D---E (fix)
-     /                 ==>
-A---B (master)              A---B---C---D---E (master & fix)
+     /                ==>
+A---B (master)             A---B---C---D---E (master & fix)
 ```
+
+\normalsize
 
 - No new commit is created.
 
@@ -401,13 +422,21 @@ A---B (master)              A---B---C---D---E (master & fix)
 Extend the previous branch structure to this:
 
 ```
-         E---F---G---H---I (feature-a & fix)
+         F---G---H---I---- (new-point-a & fix-grammar)
         /                 \
        /                   \
-      /       J---K (feature-b)
+      /       J---K (new-point-b)
      /       /               \
-A---B---C---D---E---J'---K'---M (master)
+A---B---C---D---E---J'---K'---L (master)
 ```
+
+## What is `HEAD`
+
+`HEAD` is:
+
+- A special pointer in your repository that points to the commit your current work is based on
+
+- Useful when performing some commands
 
 # Remote repositories
 
@@ -425,27 +454,36 @@ A---B---C---D---E---J'---K'---M (master)
 
 <!--prettier-ignore-->
 | Command                       | Description                                        |
-| ----------------------------- | -------------------------------------------------- |
+| ----------------------------------- | -------------------------------------------- |
 | `git remote add <name> <url>` | Add a remote repository                            |
 | `git remote -v`               | List remote repositories                           |
-| `git push <remote> <branch>`  | Upload local commits to a remote repository        |
-| `git pull <remote> <branch>`  | Download and merge from a remote repository        |
-| `git fetch <remote>`          | Download objects and refs from a remote repository |
+| `git push [remote] [branch]`  | Upload local commits to a remote repository        |
+| `git pull [remote] [branch]`  | Download and merge from a remote repository        |
+| `git fetch [remote]`          | Download objects and refs from a remote repository |
 
 \normalsize
 
 ### Popular Git hosting platforms
 
+\small
+
 - **GitHub**: Most popular platform, owned by Microsoft
 - **GitLab**: Offers both cloud and self-hosted solutions
 - **Bitbucket**: Popular among enterprise users, owned by Atlassian
-- **FOCS Git**: The internal SJTU Git platform mentioned in this workshop
+- **FOCS Git**: The internal GC Git platform
+  \normalsize
+
+## Practice
+
+Create a remote repository on [FOCS Git](https://focs.ji.sjtu.edu.cn/git) and push your Survival Guide to it.
 
 # Solving conflicts in Git
 
 ## What is a merge conflict?
 
-A merge conflict occurs when Git cannot automatically reconcile differences between two commits during a merge operation. This typically happens when the same lines in the same file have been modified in different branches that are being merged.
+A merge conflict occurs when Git cannot automatically reconcile differences between two commits during a merge operation.
+
+This typically happens when the same lines in the same file have been modified in different branches that are being merged.
 
 ## How to identify a conflict
 
@@ -457,7 +495,7 @@ When a merge conflict occurs, Git will:
 
 3. Report which files have conflicts
 
-Check the status with: `git status`
+**NOTE:** Check the status with: `git status`
 
 ## Understanding conflict markers
 
@@ -477,11 +515,15 @@ The content between `=======` and `>>>>>>> branch-name` is from the branch you'r
 
 ## Steps to resolve a conflict
 
+\small
+
 1. Identify conflicted files using `git status`
 
 2. Open each conflicted file and look for conflict markers (`<<<<<<<`, `=======`, `>>>>>>>`)
 
 3. Edit the file to resolve the conflict by:
+
+\vspace{-12pt}
 
 - Deciding which changes to keep (from either branch or a combination)
 
@@ -489,24 +531,33 @@ The content between `=======` and `>>>>>>> branch-name` is from the branch you'r
 
 - Making any additional changes needed to properly integrate the code
 
+\vspace{-12pt}
+
 4. Add the resolved files to the staging area:
+
+\vspace{-12pt}
 
 - Use `git add <filename>` or `git add .` to stage all resolved files
 
+\vspace{-12pt}
+
 5. Complete the merge:
 
+\vspace{-12pt}
+
 - `git commit -m "Resolve merge conflict in <filename>"`
+
+\normalsize
 
 ## Practical example
 
 Let's say we have a conflict in `README.md`:
 
 ```
-<<<<<<< HEAD
 # My Project
+<<<<<<< HEAD
 This is the main branch content
 =======
-# My Project
 This is the feature branch content
 >>>>>>> feature-branch
 ```
@@ -515,7 +566,7 @@ After deciding which content to keep (or combining both), the resolved file shou
 
 ```
 # My Project
-This is the content I want to keep after resolving the conflict
+This is the content I want to keep
 ```
 
 ## Tips for conflict resolution
@@ -557,11 +608,11 @@ This is the content I want to keep after resolving the conflict
 
 - Solution: Add the file with `git add <filename>`, then use `git commit --amend` to include it in the previous commit
 
-## Common issues
-
 **4. Accidentally modified the wrong branch:**
 
 - Solution: Use `git stash` to save changes, switch to correct branch, then `git stash pop` to apply changes there
+
+## Common issues
 
 **5. Conflicts during merge:**
 
@@ -571,7 +622,7 @@ This is the content I want to keep after resolving the conflict
 
 - To unstage a file: `git restore --staged <file>`
 - To discard changes in working directory: `git restore <file>`
-- To go back to a previous commit: `git reset --hard <commit-hash>` (WARNING: This is destructive!)
+- To go back to a previous commit: `git reset --hard <commit-hash>` (**WARNING:** This is destructive!)
 
 ## Undoing changes in Git
 
@@ -579,55 +630,32 @@ Git provides several ways to undo changes depending on where you are in the work
 
 ### Undoing changes in the Working Directory
 
+\vspace{-8pt}
+
 `git restore <file>` (or `git checkout -- <file>` in older Git versions)
 
 ### Unstaging a file
 
+\vspace{-8pt}
+
 `git restore --staged <file>` (or `git reset HEAD <file>` in older Git versions)
-
-### Undoing commits (locally only!)
-
-**Soft Reset**: Moves the branch pointer back but keeps changes in staging area
-
-::: columns
-:::: {.column width=8%}
-::::
-:::: {.column width=20%}
-
-Before:
-
-```
-A---B---C
-        ^
-      HEAD
-```
-
-::::
-:::: {.column width=60%}
-
-After `git reset --soft HEAD~1`:
-
-```
-A---B---C
-    ^
-  HEAD (C's changes in staging area)
-```
-
-::::
-:::: {.column width=12%}
-::::
-:::
 
 ## Undoing Changes in Git
 
 ### Undoing commits (locally only!)
 
-**Mixed Reset**: Moves the branch pointer back and keeps changes in working directory
+\vspace{-8pt}
+
+**Soft Reset**: Moves the branch pointer back but keeps changes in staging area
+
+\footnotesize
 
 ::: columns
 :::: {.column width=8%}
 ::::
 :::: {.column width=20%}
+
+\centering
 
 Before:
 
@@ -638,29 +666,84 @@ A---B---C
 ```
 
 ::::
-:::: {.column width=70%}
+:::: {.column width=64%}
+
+\centering
+
+After `git reset --soft HEAD~1`:
+
+```{.lstlisting framexleftmargin=-7em framexrightmargin=-7em}
+               A---B---C
+                   ^
+                 HEAD
+```
+
+::::
+:::: {.column width=8%}
+::::
+:::
+
+\begin{center}(\lstinline|C|'s changes in staging area)\end{center}
+
+\normalsize
+
+**Mixed Reset**: Moves the branch pointer back and keeps changes in working directory
+
+\footnotesize
+
+::: columns
+:::: {.column width=8%}
+::::
+:::: {.column width=20%}
+
+\centering
+
+Before:
+
+```
+A---B---C
+        ^
+      HEAD
+```
+
+::::
+:::: {.column width=64%}
+
+\centering
 
 After `git reset --mixed HEAD~1`:
 
-```
-A---B---C
-    ^
-  HEAD (C's changes in working directory)
+```{.lstlisting framexleftmargin=-7em framexrightmargin=-7em}
+               A---B---C
+                   ^
+                 HEAD
 ```
 
 ::::
-:::: {.column width=2%}
+:::: {.column width=8%}
 ::::
 :::
 
-\quad
+\begin{center}(\lstinline|C|'s changes in working directory)\end{center}
+
+\normalsize
+
+## Undoing Changes in Git
+
+### Undoing commits (locally only!)
+
+\vspace{-8pt}
 
 **Hard Reset**: Moves the branch pointer back and discards all changes
+
+\footnotesize
 
 ::: columns
 :::: {.column width=8%}
 ::::
 :::: {.column width=20%}
+
+\centering
 
 Before:
 
@@ -671,17 +754,23 @@ A---B---C
 ```
 
 ::::
-:::: {.column width=50%}
+:::: {.column width=64%}
+
+\centering
 
 After `git reset --hard HEAD~1`:
 
-```
-A---B
-    ^
-  HEAD (C's changes discarded)
+```{.lstlisting framexleftmargin=-8em framexrightmargin=-8em}
+                 A---B
+                     ^
+                   HEAD
 ```
 
 ::::
-:::: {.column width=22%}
+:::: {.column width=8%}
 ::::
 :::
+
+\begin{center}(\lstinline|C|'s changes discarded)\end{center}
+
+\normalsize
