@@ -33,4 +33,4 @@ The output PDF is `part1.pdf`.
 - [ ] Add more exercises
 - [ ] Add WSL and Linux Shell image
 - [x] Mention right-click to paste in Git Bash
-- [ ] Manual merge
+- [x] Manual merge
