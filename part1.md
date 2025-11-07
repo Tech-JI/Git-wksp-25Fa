@@ -20,15 +20,15 @@ header-includes: |
 
 \tableofcontents
 
-# Alternatives to Git Workshop
+# Introduction
+
+## Alternatives to Git Workshop
 
 - Google "how to use git", "git tutorial"
 
 - [Pro Git](https://git-scm.com/book/en/v2)
 
 - Ask AI
-
-# Introduction
 
 ## The what and the why
 
@@ -933,3 +933,11 @@ After `git reset --hard HEAD~1`:
 \begin{center}(\lstinline|C|'s changes discarded)\end{center}
 
 \normalsize
+
+## \quad
+
+\center
+
+\huge
+
+**Thank you!**
