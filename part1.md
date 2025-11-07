@@ -56,26 +56,6 @@ header-includes: |
 
 - Today, we're gonna build an SJTU Survival Guide with Git
 
-# Git setup
-
-- It is assumed that you have installed Git already
-
-- Identify the type of your Git installation
-
-| Installation type | Shell                  |
-| ----------------- | ---------------------- |
-| Windows native    | Git Bash or Powershell |
-| WSL               | WSL Shell              |
-| Dual-boot         | Linux Shell            |
-
-## Git Bash UI
-
-![Git Bash](git_bash.png)
-
-## Powershell UI
-
-![Powershell](powershell.png)
-
 # Shell 101
 
 ## What is shell
@@ -86,13 +66,28 @@ header-includes: |
 
 - In particular, we use shell in this workshop to send Git commands to our OS
 
-- We use Git Bash as exmample in this workshop. WSL shell and Linux shell are pretty similar
-
 - A few conventions: Monospace is used for commands and code. Brackets ([]) surround optional arguments, angle brackets (<>) surround mandatory arguments, vertical bars (|) separate choices, and ellipses (...) can be repeated.
 
-## Git Bash UI annotated
+## Different kinds of shell
+
+- Identify the type of your Git installation and its corresponding shell
+
+| Installation type | Shell                  |
+| ----------------- | ---------------------- |
+| Windows native    | Git Bash or Powershell |
+| WSL               | WSL Shell              |
+| Dual-boot         | Linux Shell            |
+
+- We use Git Bash as exmample in this workshop. WSL shell and Linux shell are pretty similar
+
+## Git Bash UI
 
 ![Understanding Git Bash](understanding_git_bash.png)
+
+## Powershell UI
+
+![Powershell](powershell.png)
+
 
 ## Directories and paths
 
