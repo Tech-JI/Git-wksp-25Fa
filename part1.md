@@ -165,9 +165,9 @@ Cont.
 
 ## Invoke text editors in shell
 
-- If you have installed and added VS Code to the `PATH` environment variable on Windows, you can also use the command `code <FILE>` to open `FILE` in VS Code. If you haven't already, follow the guide [for Windows 10](https://stackoverflow.com/questions/44272416/add-a-folder-to-the-path-environment-variable-in-windows-10-with-screenshots) or [for Windows 11](https://superuser.com/questions/1861276/how-to-set-a-folder-to-the-path-environment-variable-in-windows-11). Note that you'll have to reopen Git Bash after this
+- VS Code: use `code <FILE>` to open `FILE`, or `code <DIRECTORY>` to open `DIRECTORY` in VS Code. VS Code should be added to `PATH` environment variable on Windows. Follow the guide [for Windows 10](https://stackoverflow.com/questions/44272416/add-a-folder-to-the-path-environment-variable-in-windows-10-with-screenshots) or [for Windows 11](https://superuser.com/questions/1861276/how-to-set-a-folder-to-the-path-environment-variable-in-windows-11). Note that you'll have to reopen Git Bash after this
 
-- Alternatively, use `notepad <FILE>` to open `FILE` in Notepad
+- Notepad: use `notepad <FILE>` to open `FILE` in Notepad
 
 ## Tips
 
@@ -183,7 +183,7 @@ Cont.
 
 ## Practice
 
-- Technically, `cd` is the only command that's absolutely necessary for this workshop. Everything else can be done on File Explorer. Nevertheless, try to learn the commands since you'll need them in the future
+- Technically, `cd` is the only command that's absolutely necessary for this workshop. Everything else can be done on File Explorer. Nevertheless, try to learn the commands as you'll need them in the future
 
 - Create folder `~/Survive-SJTU` and create a file named `README.md` in it. Then write a few pieces of survival guide in it. You may want to follow [the Markdown syntax](https://daringfireball.net/projects/markdown/syntax)
 
