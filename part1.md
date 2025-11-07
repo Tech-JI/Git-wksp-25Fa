@@ -88,7 +88,6 @@ header-includes: |
 
 ![Powershell](powershell.png)
 
-
 ## Directories and paths
 
 - Git Bash uses slashes (`/`) as directory delimiters. So do WSL shell and Linux shell
@@ -215,9 +214,21 @@ A repository is:
 
 **Create a repository = Create a standardized `.git` folder**
 
-- `git init` in local existing project directory
+- Use `git init` in local existing project directory
 
-- `git clone <url>` to copy a remote (i.e. stored on a server) directory with all its files and histories (i.e. its `.git` folder) to your local computer
+- Use `git clone` to copy a remote (i.e. stored on a server) directory with all its files and histories (i.e. its `.git` folder) to your local computer
+
+\small
+
+| Command                       | Function                     |
+| ----------------------------- | ---------------------------- |
+| `git clone <repository-url>`  | Basic cloning                |
+| `git clone <url> <dir>`       | Clone to specified directory |
+| `git clone -b <branch> <url>` | Clone a specific branch      |
+
+\normalsize
+
+**Reminder:** Clone will automatically set the remote, so you needn't connect to the remote repo again after cloning.
 
 ## The three zones
 
@@ -270,7 +281,7 @@ sequenceDiagram
 
 <!--prettier-ignore-->
 | Command                       | Description                                            |
-| ----------------------------- | ----------------------------------------------- |
+| ----------------------------- | -------------------------------------- |
 | `git add <file>`              | Add file to staging area                               |
 | `git restore --staged` `<file>` | Remove file from staging area                          |
 | `git commit -m <message>`     | Commit (i.e. Take a snapshot of) files in staging area |
@@ -292,6 +303,159 @@ sequenceDiagram
 | `git reset HEAD <file>`  | Unstage files from staging area                       |
 
 \normalsize
+
+## `git add`
+
+\footnotesize
+
+- Add the file changes in the working directory to the staging area, preparing for the next submission
+
+- General Inputs
+
+<!--prettier-ignore-->
+| Command              | Function                                                  |
+| -------------------- | -------------------------------------- |
+| `git add <file>`     | Stage a specific file                                     |
+| `git add .`          | Stage all changes in current directory and subdirectories |
+| `git add -A/--all`   | Stage all changes in entire working tree                  |
+| `git add -p/--patch` | Interactively choose chunks of changes to stage           |
+
+- Description
+  This command is a crucial step in the Git workflow, moving changes from the working directory to the staging area!
+
+\normalsize
+
+## `git commit`
+
+- Save the changes in the staging area to the version repository and create a new commit record
+
+- General Input
+
+\small
+
+<!--prettier-ignore-->
+| Command               | Function                                                     |
+| --------------------- | ------------------------------------------ |
+| `git commit -m "msg"` | Commit directly and add the commit information               |
+| `git commit`          | Open the text editor to write multiserial commit information |
+| `git commit -a`       | Submit the modifications of all tracked files                |
+| `git commit -v`       | Display the distinctions in the text editor                  |
+
+\normalsize
+
+## Commit message
+
+\small
+
+- Format
+
+\footnotesize
+
+```
+<type>[scope]: <description>
+```
+
+\small
+
+- Usage Examples
+
+\scriptsize
+
+<!--prettier-ignore-->
+| Description                           | Example (with type)                                      |
+| --------------- | ----------------------------------- |
+| A new feature                         | `git commit -m "feat: implement dark mode` `toggle"`       |
+| Bug fix                               | `git commit -m "fix: correct calculation in` `cart total"` |
+| Documentation changes                 | `git commit -m "docs: add installation guide"`           |
+| Code style changes (formatting, etc.) | `git commit -m "style: fix indentation in` `components"`   |
+| Code refactoring (no feature for fix) | `git commit -m "refactor: extract payment service"`      |
+| Test-related changes                  | `git commit -m "test: add e2e tests for checkout"`       |
+| Maintenance tasks, tooling changes    | `git commit -m "chore: update eslint configuration"`     |
+
+\normalsize
+
+## **`git status`**
+
+- Display the current status of the working directory and staging area, including which files have been modified, staged or untracked
+
+- General Inputs
+
+\small
+
+| Command         | Function                            |
+| --------------- | ----------------------------------- |
+| `git status`    | Basic usage                         |
+| `git status -s` | Short format output                 |
+| `git status -b` | Display the information of a branch |
+| `git status -v` | Display detailed "diff" information |
+
+## **`git status`**
+
+- Short Format Status Codes Appendix
+
+| Code | Meaning         |
+| ---- | --------------- |
+| `M`  | Modified        |
+| `A`  | New file staged |
+| `??` | Untracked file  |
+| `D`  | Delete file     |
+| `R`  | Renamed file    |
+| `C`  | Copied file     |
+
+## `git status`
+
+- Explanation of the status area
+
+<!--prettier-ignore-->
+| Status Area                   | Corresponding actions                                  |
+| ----------------------------- | ----------------------------------- |
+| Changes to be committed       | `git restore --staged` to unstage                      |
+| Changes not staged for commit | `git add` to stage or `git restore` to discard changes |
+| Untracked files               | `git add` to start tracking                            |
+
+\normalsize
+
+## `git diff`
+
+\small
+
+- Display the differences among the working directory, staging area, and commit
+
+- Sample Input & Output
+
+- Input :\
+  `git diff`
+
+- Output :
+
+```diff
+diff --git a/example.js b/example.js
+index 1234567..89abcde 100644
+--- a/example.js
++++ b/example.js
+@@ -2,5 +2,5 @@ function example() {
+   let message = "Hello";
+-  console.log("Old message");
++  console.log("New message");
+   return message;
+ }
+```
+
+- Description
+
+This command is a powerful tool for code review and debugging!
+
+\normalsize
+
+## `git log`
+
+- View the submission history
+
+![git-log](git-log.jpg)
+
+- “HEAD -> master”: You are currently in the master branch.
+- “origin/master”: Your local master branch is synchronized with the master branch of the remote repository.
+- You need to use `git add` and `git commit` first before you can view the logs.
 
 # About branches
 
