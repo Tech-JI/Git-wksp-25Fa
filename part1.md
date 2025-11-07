@@ -13,7 +13,7 @@ urlcolor: blue
 #aspectratio: 169
 header-includes: |
   \setbeamertemplate{headline}{}
-  \lstset{basicstyle=\ttfamily,frame=single,frameround=tttt,columns=fullflexible,keepspaces=true}
+  \lstset{basicstyle=\ttfamily,frame=single,frameround=tttt,columns=fullflexible,keepspaces=true,backgroundcolor=\color{yellow!20}}
 ---
 
 ## Contents
@@ -140,13 +140,13 @@ header-includes: |
 | ---------------------------- | --------------------------------------------------------------------- |
 | `cd [DIRECTORY]`             | Change working directory to `DIRECTORY`, or home directory by default |
 | `pwd`                        | Print working directory                                               |
-| `ls [OPTION]... [DIRECTORY]` | List information about `DIRECTORY`, or current directory by default   |
+| `ls [OPTION]...` `[DIRECTORY]` | List information about `DIRECTORY`, or current directory by default   |
 | Option `-a`                  | Do not ignore entries starting with `.`                               |
 | Option `-l`                  | Use a long listing format                                             |
 | `touch <FILE>`               | Create the `FILE` if it doesn't exist                                 |
 | `mkdir <DIRECTORY>`          | Create `DIRECTORY`                                                    |
 | `cp <SOURCE> <DEST>`         | Copy `SOURCE` to `DEST`                                               |
-| `cp <SOURCE> <DIRECTORY>`    | Copy `SOURCE` to `DIRECTORY`                                          |
+| `cp <SOURCE>` `<DIRECTORY>`    | Copy `SOURCE` to `DIRECTORY`                                          |
 
 \normalsize
 
@@ -160,8 +160,8 @@ Cont.
 | Command                      | Action                                                                |
 | ---------------------------- | --------------------------------------------------------------------- |
 | `mv <SOURCE> <DEST>`         | Rename `SOURCE` to `DEST`                                             |
-| `mv <SOURCE> <DIRECTORY>`    | Move `SOURCE` to `DIRECTORY`                                          |
-| `rm [OPTION]... <FILE>`      | Remove `FILE`. It does not remove directories by default              |
+| `mv <SOURCE>` `<DIRECTORY>`    | Move `SOURCE` to `DIRECTORY`                                          |
+| `rm [OPTION]...` `<FILE>`      | Remove `FILE`. It does not remove directories by default              |
 | Option `-r`                  | Remove directories and their contents recursively                     |
 
 \normalsize
@@ -277,7 +277,7 @@ sequenceDiagram
 | Command                       | Description                                            |
 | ----------------------------- | ----------------------------------------------- |
 | `git add <file>`              | Add file to staging area                               |
-| `git restore --staged <file>` | Remove file from staging area                          |
+| `git restore --staged` `<file>` | Remove file from staging area                          |
 | `git commit -m <message>`     | Commit (i.e. Take a snapshot of) files in staging area |
 
 \normalsize
@@ -293,7 +293,7 @@ sequenceDiagram
 | `git log`                | Show commit history                                   |
 | `git diff`               | Show changes between commits, commit and working tree |
 | `git diff --staged`      | Show changes between staging area and last commit     |
-| `git checkout -- <file>` | Discard changes in working directory                  |
+| \footnotesize`git checkout -- <file>`\small | Discard changes in working directory                  |
 | `git reset HEAD <file>`  | Unstage files from staging area                       |
 
 \normalsize
