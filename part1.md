@@ -13,22 +13,22 @@ urlcolor: blue
 #aspectratio: 169
 header-includes: |
   \setbeamertemplate{headline}{}
-  \lstset{basicstyle=\ttfamily,frame=single,frameround=tttt,columns=fullflexible,keepspaces=true}
+  \lstset{basicstyle=\ttfamily,frame=single,frameround=tttt,columns=fullflexible,keepspaces=true,backgroundcolor=\color{yellow!20}}
 ---
 
 ## Contents
 
 \tableofcontents
 
-# Alternatives to Git Workshop
+# Introduction
+
+## Alternatives to Git Workshop
 
 - Google "how to use git", "git tutorial"
 
 - [Pro Git](https://git-scm.com/book/en/v2)
 
 - Ask AI
-
-# Introduction
 
 ## The what and the why
 
@@ -56,26 +56,6 @@ header-includes: |
 
 - Today, we're gonna build an SJTU Survival Guide with Git
 
-# Git setup
-
-- It is assumed that you have installed Git already
-
-- Identify the type of your Git installation
-
-| Installation type | Shell                  |
-| ----------------- | ---------------------- |
-| Windows native    | Git Bash or Powershell |
-| WSL               | WSL Shell              |
-| Dual-boot         | Linux Shell            |
-
-## Git Bash UI
-
-![Git Bash](git_bash.png)
-
-## Powershell UI
-
-![Powershell](powershell.png)
-
 # Shell 101
 
 ## What is shell
@@ -86,13 +66,27 @@ header-includes: |
 
 - In particular, we use shell in this workshop to send Git commands to our OS
 
-- We use Git Bash as exmample in this workshop. WSL shell and Linux shell are pretty similar
-
 - A few conventions: Monospace is used for commands and code. Brackets ([]) surround optional arguments, angle brackets (<>) surround mandatory arguments, vertical bars (|) separate choices, and ellipses (...) can be repeated.
 
-## Git Bash UI annotated
+## Different kinds of shell
+
+- Identify the type of your Git installation and its corresponding shell
+
+| Installation type | Shell                  |
+| ----------------- | ---------------------- |
+| Windows native    | Git Bash or Powershell |
+| WSL               | WSL Shell              |
+| Dual-boot         | Linux Shell            |
+
+- We use Git Bash as exmample in this workshop. WSL shell and Linux shell are pretty similar
+
+## Git Bash UI
 
 ![Understanding Git Bash](understanding_git_bash.png)
+
+## Powershell UI
+
+![Powershell](powershell.png)
 
 ## Directories and paths
 
@@ -140,13 +134,13 @@ header-includes: |
 | ---------------------------- | --------------------------------------------------------------------- |
 | `cd [DIRECTORY]`             | Change working directory to `DIRECTORY`, or home directory by default |
 | `pwd`                        | Print working directory                                               |
-| `ls [OPTION]... [DIRECTORY]` | List information about `DIRECTORY`, or current directory by default   |
+| `ls [OPTION]...` `[DIRECTORY]` | List information about `DIRECTORY`, or current directory by default   |
 | Option `-a`                  | Do not ignore entries starting with `.`                               |
 | Option `-l`                  | Use a long listing format                                             |
 | `touch <FILE>`               | Create the `FILE` if it doesn't exist                                 |
 | `mkdir <DIRECTORY>`          | Create `DIRECTORY`                                                    |
 | `cp <SOURCE> <DEST>`         | Copy `SOURCE` to `DEST`                                               |
-| `cp <SOURCE> <DIRECTORY>`    | Copy `SOURCE` to `DIRECTORY`                                          |
+| `cp <SOURCE>` `<DIRECTORY>`    | Copy `SOURCE` to `DIRECTORY`                                          |
 
 \normalsize
 
@@ -160,8 +154,8 @@ Cont.
 | Command                      | Action                                                                |
 | ---------------------------- | --------------------------------------------------------------------- |
 | `mv <SOURCE> <DEST>`         | Rename `SOURCE` to `DEST`                                             |
-| `mv <SOURCE> <DIRECTORY>`    | Move `SOURCE` to `DIRECTORY`                                          |
-| `rm [OPTION]... <FILE>`      | Remove `FILE`. It does not remove directories by default              |
+| `mv <SOURCE>` `<DIRECTORY>`    | Move `SOURCE` to `DIRECTORY`                                          |
+| `rm [OPTION]...` `<FILE>`      | Remove `FILE`. It does not remove directories by default              |
 | Option `-r`                  | Remove directories and their contents recursively                     |
 
 \normalsize
@@ -170,9 +164,9 @@ Cont.
 
 ## Invoke text editors in shell
 
-- If you have installed and added VS Code to the `PATH` environment variable on Windows, you can also use the command `code <FILE>` to open `FILE` in VS Code. If you haven't already, follow the guide [for Windows 10](https://stackoverflow.com/questions/44272416/add-a-folder-to-the-path-environment-variable-in-windows-10-with-screenshots) or [for Windows 11](https://superuser.com/questions/1861276/how-to-set-a-folder-to-the-path-environment-variable-in-windows-11). Note that you'll have to reopen Git Bash after this
+- VS Code: use `code <FILE>` to open `FILE`, or `code <DIRECTORY>` to open `DIRECTORY` in VS Code. VS Code should be added to `PATH` environment variable on Windows. Follow the guide [for Windows 10](https://stackoverflow.com/questions/44272416/add-a-folder-to-the-path-environment-variable-in-windows-10-with-screenshots) or [for Windows 11](https://superuser.com/questions/1861276/how-to-set-a-folder-to-the-path-environment-variable-in-windows-11). Note that you'll have to reopen Git Bash after this
 
-- Alternatively, use `notepad <FILE>` to open `FILE` in Notepad
+- Notepad: use `notepad <FILE>` to open `FILE` in Notepad
 
 ## Tips
 
@@ -188,7 +182,7 @@ Cont.
 
 ## Practice
 
-- Technically, `cd` is the only command that's absolutely necessary for this workshop. Everything else can be done on File Explorer. Nevertheless, try to learn the commands since you'll need them in the future
+- Technically, `cd` is the only command that's absolutely necessary for this workshop. Everything else can be done on File Explorer. Nevertheless, try to learn the commands as you'll need them in the future
 
 - Create folder `~/Survive-SJTU` and create a file named `README.md` in it. Then write a few pieces of survival guide in it. You may want to follow [the Markdown syntax](https://daringfireball.net/projects/markdown/syntax)
 
@@ -220,9 +214,21 @@ A repository is:
 
 **Create a repository = Create a standardized `.git` folder**
 
-- `git init` in local existing project directory
+- Use `git init` in local existing project directory
 
-- `git clone <url>` to copy a remote (i.e. stored on a server) directory with all its files and histories (i.e. its `.git` folder) to your local computer
+- Use `git clone` to copy a remote (i.e. stored on a server) directory with all its files and histories (i.e. its `.git` folder) to your local computer
+
+\small
+
+| Command                       | Function                     |
+| ----------------------------- | ---------------------------- |
+| `git clone <repository-url>`  | Basic cloning                |
+| `git clone <url> <dir>`       | Clone to specified directory |
+| `git clone -b <branch> <url>` | Clone a specific branch      |
+
+\normalsize
+
+**Reminder:** Clone will automatically set the remote, so you needn't connect to the remote repo again after cloning.
 
 ## The three zones
 
@@ -275,9 +281,9 @@ sequenceDiagram
 
 <!--prettier-ignore-->
 | Command                       | Description                                            |
-| ----------------------------- | ----------------------------------------------- |
+| ----------------------------- | -------------------------------------- |
 | `git add <file>`              | Add file to staging area                               |
-| `git restore --staged <file>` | Remove file from staging area                          |
+| `git restore --staged` `<file>` | Remove file from staging area                          |
 | `git commit -m <message>`     | Commit (i.e. Take a snapshot of) files in staging area |
 
 \normalsize
@@ -293,10 +299,163 @@ sequenceDiagram
 | `git log`                | Show commit history                                   |
 | `git diff`               | Show changes between commits, commit and working tree |
 | `git diff --staged`      | Show changes between staging area and last commit     |
-| `git checkout -- <file>` | Discard changes in working directory                  |
+| \footnotesize`git checkout -- <file>`\small | Discard changes in working directory                  |
 | `git reset HEAD <file>`  | Unstage files from staging area                       |
 
 \normalsize
+
+## `git add`
+
+\footnotesize
+
+- Add the file changes in the working directory to the staging area, preparing for the next submission
+
+- General Inputs
+
+<!--prettier-ignore-->
+| Command              | Function                                                  |
+| -------------------- | -------------------------------------- |
+| `git add <file>`     | Stage a specific file                                     |
+| `git add .`          | Stage all changes in current directory and subdirectories |
+| `git add -A/--all`   | Stage all changes in entire working tree                  |
+| `git add -p/--patch` | Interactively choose chunks of changes to stage           |
+
+- Description
+  This command is a crucial step in the Git workflow, moving changes from the working directory to the staging area!
+
+\normalsize
+
+## `git commit`
+
+- Save the changes in the staging area to the version repository and create a new commit record
+
+- General Input
+
+\small
+
+<!--prettier-ignore-->
+| Command               | Function                                                     |
+| --------------------- | ------------------------------------------ |
+| `git commit -m "msg"` | Commit directly and add the commit information               |
+| `git commit`          | Open the text editor to write multiserial commit information |
+| `git commit -a`       | Submit the modifications of all tracked files                |
+| `git commit -v`       | Display the distinctions in the text editor                  |
+
+\normalsize
+
+## Commit message
+
+\small
+
+- Format
+
+\footnotesize
+
+```
+<type>[scope]: <description>
+```
+
+\small
+
+- Usage Examples
+
+\scriptsize
+
+<!--prettier-ignore-->
+| Description                           | Example (with type)                                      |
+| --------------- | ----------------------------------- |
+| A new feature                         | `git commit -m "feat: implement dark mode` `toggle"`       |
+| Bug fix                               | `git commit -m "fix: correct calculation in` `cart total"` |
+| Documentation changes                 | `git commit -m "docs: add installation guide"`           |
+| Code style changes (formatting, etc.) | `git commit -m "style: fix indentation in` `components"`   |
+| Code refactoring (no feature for fix) | `git commit -m "refactor: extract payment service"`      |
+| Test-related changes                  | `git commit -m "test: add e2e tests for checkout"`       |
+| Maintenance tasks, tooling changes    | `git commit -m "chore: update eslint configuration"`     |
+
+\normalsize
+
+## **`git status`**
+
+- Display the current status of the working directory and staging area, including which files have been modified, staged or untracked
+
+- General Inputs
+
+\small
+
+| Command         | Function                            |
+| --------------- | ----------------------------------- |
+| `git status`    | Basic usage                         |
+| `git status -s` | Short format output                 |
+| `git status -b` | Display the information of a branch |
+| `git status -v` | Display detailed "diff" information |
+
+## **`git status`**
+
+- Short Format Status Codes Appendix
+
+| Code | Meaning         |
+| ---- | --------------- |
+| `M`  | Modified        |
+| `A`  | New file staged |
+| `??` | Untracked file  |
+| `D`  | Delete file     |
+| `R`  | Renamed file    |
+| `C`  | Copied file     |
+
+## `git status`
+
+- Explanation of the status area
+
+<!--prettier-ignore-->
+| Status Area                   | Corresponding actions                                  |
+| ----------------------------- | ----------------------------------- |
+| Changes to be committed       | `git restore --staged` to unstage                      |
+| Changes not staged for commit | `git add` to stage or `git restore` to discard changes |
+| Untracked files               | `git add` to start tracking                            |
+
+\normalsize
+
+## `git diff`
+
+\small
+
+- Display the differences among the working directory, staging area, and commit
+
+- Sample Input & Output
+
+- Input :\
+  `git diff`
+
+- Output :
+
+```diff
+diff --git a/example.js b/example.js
+index 1234567..89abcde 100644
+--- a/example.js
++++ b/example.js
+@@ -2,5 +2,5 @@ function example() {
+   let message = "Hello";
+-  console.log("Old message");
++  console.log("New message");
+   return message;
+ }
+```
+
+- Description
+
+This command is a powerful tool for code review and debugging!
+
+\normalsize
+
+## `git log`
+
+- View the submission history
+
+![git-log](git-log.jpg)
+
+- “HEAD -> master”: You are currently in the master branch.
+- “origin/master”: Your local master branch is synchronized with the master branch of the remote repository.
+- You need to use `git add` and `git commit` first before you can view the logs.
 
 # About branches
 
@@ -774,3 +933,11 @@ After `git reset --hard HEAD~1`:
 \begin{center}(\lstinline|C|'s changes discarded)\end{center}
 
 \normalsize
+
+## \quad
+
+\center
+
+\huge
+
+**Thank you!**
