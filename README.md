@@ -35,3 +35,10 @@ The output PDF is `part1.pdf`.
 - [x] Mention right-click to paste in Git Bash
 - [x] Manual merge
 - [ ] Git Bash tab completion
+- [ ] Add .gitignore in slides
+- [ ] Add git model
+- [ ] Fix undo arrangement, remove duplication
+- [ ] Replace Git Bash demo to WSL or Linux
+- [ ] Better division(?)
+- [ ] Add wksp routine
+
