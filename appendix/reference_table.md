@@ -1,4 +1,4 @@
-# **Git Commands Appendix**
+# **Git Commands Reference Table**
 
 |Command  |Description               |
 |-----------------------------|----------------------------------------------------------------------------|
