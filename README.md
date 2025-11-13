@@ -31,14 +31,16 @@ The output PDF is `part1.pdf`.
 
 - [ ] Add images back when necessary
 - [ ] Add more exercises
-- [ ] Add WSL and Linux Shell image
+- [x] Add WSL and Linux Shell image
 - [x] Mention right-click to paste in Git Bash
 - [x] Manual merge
-- [ ] Git Bash tab completion
+- [x] Git Bash tab completion
 - [ ] Add .gitignore in slides
-- [ ] Add git model
+- [x] Add git model
 - [ ] Fix undo arrangement, remove duplication
-- [ ] Replace Git Bash demo to WSL or Linux
+- [x] Replace Git Bash demo to WSL or Linux
 - [ ] Better division(?)
 - [ ] Add wksp routine
-
+- [ ] Add git installation pdf
+- [ ] Add SSH config
+- [ ] Fill repo url
