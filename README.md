@@ -39,8 +39,9 @@ The output PDF is `part1.pdf`.
 - [x] Add git model
 - [ ] Fix undo arrangement, remove duplication
 - [x] Replace Git Bash demo to WSL or Linux
-- [ ] Better division(?)
-- [ ] Add wksp routine
+- [x] Better division(?)
+- [x] Add wksp routine
 - [ ] Add git installation pdf
 - [ ] Add SSH config
 - [ ] Fill repo url
+- [ ] Add rebase --continue and abort and -i
