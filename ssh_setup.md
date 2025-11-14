@@ -1,3 +1,4 @@
+\lstset{basicstyle=\ttfamily,breaklines=true}
 # SSH Setup for FOCS Gitea
 
 ## Step one
@@ -36,10 +37,15 @@ Copy the content of the output and navigate to [User settings for SSH/GPG Keys](
 
 ## Step four
 
-Verify you have successfully set up SSH key for FOCS Gitea. Getting the same output indicates you have successfully set up SSH key for FOCS Gitea.
+Verify you have successfully set up SSH key for FOCS Gitea.
 
 ```sh
 $ ssh -p 2222 git@focs.ji.sjtu.edu.cn
+```
+
+If you get the following output, you have successfully set up SSH key for FOCS Gitea.
+
+```text
 PTY allocation request failed on channel 0
 Hi there, <jAccount>! You've successfully authenticated with the key named <Key Name>, but Gitea does not provide shell access.
 If this is unexpected, please log in with password and setup Gitea under another user.
