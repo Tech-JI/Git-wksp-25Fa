@@ -124,16 +124,13 @@ header-includes: |
 <!--prettier-ignore-->
 | Command                      | Action                                                                |
 | ---------------------------- | --------------------------------------------------------------------- |
-| `cd [DIRECTORY]`             | Change working directory to `DIRECTORY`, or home directory by default |
-| `ls [OPTION]...` `[DIRECTORY]` | List information about `DIRECTORY`, or current directory by default   |
-| Option `-a`                  | Show hidden files                                                     |
-| Option `-l`                  | Show more information                                                 |
+| `cd [DIRECTORY]`             | Change working directory to `DIRECTORY`, default home directory       |
+| `ls [-a] [-l] [DIRECTORY]`   | List files in `DIRECTORY`, default CWD; -a show hidden files; -l show more info |
 | `mkdir <DIRECTORY>`          | Create `DIRECTORY`                                                    |
 | `cp <SOURCE> <DEST>`         | Copy `SOURCE` to `DEST`                                               |
 | `mv <SOURCE> <DEST>`         | Rename `SOURCE` to `DEST`                                             |
 | `mv <SOURCE>` `<DIRECTORY>`    | Move `SOURCE` to `DIRECTORY`                                        |
-| `rm [OPTION]...` `<FILE>`      | Remove `FILE`. Does not remove directories by default               |
-| Option `-r`                  | Remove directories and their contents recursively                     |
+| `rm [-r] <FILE>`             | Remove `FILE`; -r remove directories                                  |
 
 \normalsize
 
@@ -141,11 +138,11 @@ header-includes: |
 
 ## Invoke text editor in shell
 
-- VS Code: Use `code <FILE | DIRECTORY>`. VS Code should be added to `PATH` environment variable on Windows. Follow the guide [for Windows 10](https://stackoverflow.com/questions/44272416/add-a-folder-to-the-path-environment-variable-in-windows-10-with-screenshots) or [11](https://superuser.com/questions/1861276/how-to-set-a-folder-to-the-path-environment-variable-in-windows-11). You'll have to reopen shell after this
+- nano: Use `nano <FILE>` (WSL or Linux)
 
-- Notepad: Use `notepad <FILE>`
+- VS Code: Use `code <FILE | DIRECTORY>`. VS Code should be added to `PATH` environment variable on Windows. Follow the guide [for Windows 10](https://stackoverflow.com/questions/44272416/add-a-folder-to-the-path-environment-variable-in-windows-10-with-screenshots) or [11](https://superuser.com/questions/1861276/how-to-set-a-folder-to-the-path-environment-variable-in-windows-11). Reopen shell after this
 
-- Other text editors: Vim, nano, Emacs, ed, etc.
+- Other text editors: Vim, Emacs, ed, etc.
 
 ## Tips
 
@@ -157,11 +154,11 @@ header-includes: |
 
 - Learn from the masters! [cowsay](https://en.wikipedia.org/wiki/Cowsay), [GitHub's mascot octocat](https://api.github.com/octocat), [ASCII Star wars](https://www.asciimation.co.nz/), ["Three ASCII art styles" by Roy/SAC](https://www.roysac.com/roy-sac_styles_of_underground_text_art.html)
 
-- Copy and save a few works by others in separate files in `~/Others`. Experiment with them a little bit
+- Copy and save a few works by others in separate files in `~/Others`, using shell. Get some inspiration
 
 ## Outlook
 
-- There are more advanced topics in shell that will not be covered in this workshop, but you can check out [Bash Guide](https://mywiki.wooledge.org/BashGuide) and [Bash Pitfalls](https://mywiki.wooledge.org/BashPitfalls)
+- More advanced topics in shell: check out [Bash Guide](https://mywiki.wooledge.org/BashGuide) and [Bash Pitfalls](https://mywiki.wooledge.org/BashPitfalls)
 
 - Shell != Bash: cmd, PowerShell, Bourne shell, dash, csh, zsh, ...
 
@@ -308,8 +305,6 @@ sequenceDiagram
 | -------------------- | -------------------------------------- |
 | `git add <file>`     | Stage a specific file                                     |
 | `git add .`          | Stage all changes in current directory and subdirectories |
-| `git add -A/--all`   | Stage all changes in entire working tree                  |
-| `git add -p/--patch` | Interactively choose chunks of changes to stage           |
 
 - Description
   This command is a crucial step in the Git workflow, moving changes from the working directory to the staging area!
@@ -359,9 +354,6 @@ sequenceDiagram
 | Bug fix                               | `git commit -m "fix: correct calculation in` `cart total"` |
 | Documentation changes                 | `git commit -m "docs: add installation guide"`           |
 | Code style changes (formatting, etc.) | `git commit -m "style: fix indentation in` `components"`   |
-| Code refactoring (no feature for fix) | `git commit -m "refactor: extract payment service"`      |
-| Test-related changes                  | `git commit -m "test: add e2e tests for checkout"`       |
-| Maintenance tasks, tooling changes    | `git commit -m "chore: update eslint configuration"`     |
 
 \normalsize
 
