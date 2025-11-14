@@ -7,47 +7,26 @@ This script leverages the Joint Teapot framework to:
 2. Add students as collaborators to GitWksp_teamXX repositories based on line number
 3. Use the underlying Gitea API for repository management
 """
-
-from joint_teapot.teapot import Teapot
+import sys
 from typing import List
+from joint_teapot.teapot import Teapot
+from giteahelper import create_teams_and_repos
 
-
-def add_student_to_repo_by_email(teapot: Teapot, student_email: str, org_name: str, repo_name: str) -> bool:
-    """
-    Add a student to a specific repository using their email address.
-
-    Args:
-        teapot: The initialized Teapot instance
-        student_email: The student's email address (typically in format username@sjtu.edu.cn)
-        org_name: The organization name
-        repo_name: The name of the repository to add the student to
-
-    Returns:
-        bool: True if successful, False otherwise
-    """
-    try:
+def get_username_from_email(emails: List[str]) -> List[str]:
+    usernames = []
+    for email in emails:
         # Extract username from email (assumes SJTU email format)
-        if not student_email.endswith("@sjtu.edu.cn"):
-            print(f"Warning: Email {student_email} is not an SJTU email address")
-            return False
-
-        username = student_email.split("@")[0]
-
-        # Add student to the repository as a collaborator
-        teapot.gitea.repository_api.repo_add_collaborator(
-            org_name,
-            repo_name,
-            username
-        )
-        print(f"Successfully added {username} to {repo_name}")
-        return True
-
-    except Exception as e:
-        print(f"Error adding {student_email} to {repo_name}: {e}")
-        return False
+        email = email.strip()
+        if not email.endswith("@sjtu.edu.cn"):
+            print(f"Warning: Email {email} is not an SJTU email address")
+            continue
+        username = email.split("@")[0]
+        usernames.append(username)
+        print(f"username extracted: {username}")
+    return usernames
 
 
-def add_students_from_group_file(teapot: Teapot, group_file: str, org_name: str):
+def add_students_from_group_file(teapot: Teapot, group_file: str, template_repo:str,confirm:bool=False) -> None:
     """
     Add students to repositories by reading email addresses from group.txt file.
     Each line creates a team repository named GitWksp_teamXX where XX is the line number.
@@ -55,7 +34,8 @@ def add_students_from_group_file(teapot: Teapot, group_file: str, org_name: str)
     Args:
         teapot: The initialized Teapot instance
         group_file: Path to the group.txt file containing space-separated email addresses
-        org_name: The organization name where repositories are located
+        template_repo: The template repository name to use for creating new repositories
+        confirm: If True, ask for user confirmation before creating each repository
     """
     try:
         with open(group_file, 'r', encoding='utf-8') as f:
@@ -73,41 +53,58 @@ def add_students_from_group_file(teapot: Teapot, group_file: str, org_name: str)
 
             # Split the line by spaces to get email addresses
             emails = line.split()
-            print(f"Group {i+1}: Processing emails - {emails} -> {repo_name}")
+            usernames = get_username_from_email(emails)
+            print(f"Group {i+1}: Processing emails - {usernames} -> {repo_name}\n")
+            if confirm:
+                user_input = input("Proceed? (y/n): ")
+                if user_input.lower() != 'y':
+                    print("Operation cancelled by user.\n")
+                    continue
+            try:
+                success = create_teams_and_repos(
+                    teapot.gitea,
+                    repo_name,
+                    usernames,
+                    template=template_repo
+                )
+            except Exception as e:
+                print(f"Error creating repository {repo_name}: {e}\n")
+                continue
+            if not success:
+                print(f"Failed to create repository {repo_name}\n")
+                continue
+            else:
+                print(f"Repository {repo_name} created successfully\n")
 
-            for email in emails:
-                email = email.strip()
-                if email:  # Make sure email is not empty
-                    success = add_student_to_repo_by_email(teapot, email, org_name, repo_name)
-                    if success:
-                        print(f"  Successfully added {email} to {repo_name}")
-                    else:
-                        print(f"  Failed to add {email} to {repo_name}")
-
-        print(f"Completed processing {group_file}")
+        print(f"Completed processing {group_file}\n")
 
     except FileNotFoundError:
-        print(f"Error: {group_file} not found")
+        print(f"Error: {group_file} not found\n")
     except Exception as e:
-        print(f"Error processing {group_file}: {e}")
+        print(f"Error processing {group_file}: {e}\n")
 
 
 def main():
     """
     Main function to add students from group.txt to GitWksp_teamXX repositories.
     """
-    print("Initializing Joint Teapot...")
+    confirm=False
+    if sys.argv[1] == '-c' or sys.argv[1] == '--confirm':
+        confirm=True
+    print("Initializing Joint Teapot...\n")
     teapot = Teapot()
 
-    ORGANIZATION_NAME = ""  # Leave blank now
-
-    print(f"\n--- Adding students from group.txt to GitWksp_teamXX repositories ---")
-    print(f"Using organization: {ORGANIZATION_NAME or '(default from config)'}")
-
+    print(f"--- Adding students from group.txt to GitWksp_teamXX repositories ---\n")
+    print(f"Using organization: {teapot.gitea.org_name}\n")
+    if confirm:
+        user_input = input("Proceed? (y/n): ")
+        if user_input.lower() != 'y':
+            print("Operation cancelled by user.\n")
+            return
     # Add students from group.txt to the GitWksp_teamXX repositories
-    add_students_from_group_file(teapot, "group.txt", ORGANIZATION_NAME or teapot.gitea.org_name)
+    add_students_from_group_file(teapot, "group.txt", "template-Git-wksp-25Fa",confirm)
 
-    print("\nScript completed!")
+    print("Script completed!\n")
 
 
 if __name__ == "__main__":

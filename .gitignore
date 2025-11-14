@@ -4,3 +4,9 @@
 .puppeteer.json
 package*.json
 *.tex
+
+#python
+.venv/
+
+#environment
+.env
