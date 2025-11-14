@@ -125,7 +125,7 @@ header-includes: |
 | Command                      | Action                                                                |
 | ---------------------------- | --------------------------------------------------------------------- |
 | `cd [DIRECTORY]`             | Change working directory to `DIRECTORY`, default home directory       |
-| `ls [-a] [-l] [DIRECTORY]`   | List files in `DIRECTORY`, default CWD; -a show hidden files; -l show more info |
+| `ls [-a]` `[-l] [DIRECTORY]`   | List files in `DIRECTORY`, default CWD; -a show hidden files; -l show more info |
 | `mkdir <DIRECTORY>`          | Create `DIRECTORY`                                                    |
 | `cp <SOURCE> <DEST>`         | Copy `SOURCE` to `DEST`                                               |
 | `mv <SOURCE> <DEST>`         | Rename `SOURCE` to `DEST`                                             |
