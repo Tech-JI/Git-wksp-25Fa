@@ -353,6 +353,9 @@ sequenceDiagram
 | Bug fix                               | `git commit -m "fix: correct calculation in` `cart total"` |
 | Documentation changes                 | `git commit -m "docs: add installation guide"`           |
 | Code style changes (formatting, etc.) | `git commit -m "style: fix indentation in` `components"`   |
+| Code refastoring (no feature or fix)  | `git commit -m "refactor: extract payment service"` |
+| Test-related changes                  | `git commit -m "test: add e2e tests for checkout"` |
+| Maintenance tasks, tooling changes    | `git commit -m "chore: update eslint configuration"` |
 
 \normalsize
 
