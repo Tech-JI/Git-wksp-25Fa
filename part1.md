@@ -287,8 +287,6 @@ sequenceDiagram
 | `git log`                | Show commit history                                   |
 | `git diff`               | Show changes between commits, commit and working tree |
 | `git diff --staged`      | Show changes between staging area and last commit     |
-| \footnotesize`git checkout -- <file>`\small | Discard changes in working directory                  |
-| `git reset HEAD <file>`  | Unstage files from staging area                       |
 
 \normalsize
 
@@ -325,7 +323,6 @@ sequenceDiagram
 | `git commit -m "msg"` | Commit directly and add the commit information               |
 | `git commit`          | Open the text editor to write multiserial commit information |
 | `git commit -a`       | Submit the modifications of all tracked files                |
-| `git commit -v`       | Display the distinctions in the text editor                  |
 
 \normalsize
 
@@ -367,23 +364,7 @@ sequenceDiagram
 
 | Command         | Function                            |
 | --------------- | ----------------------------------- |
-| `git status`    | Basic usage                         |
-| `git status -s` | Short format output                 |
-| `git status -b` | Display the information of a branch |
-| `git status -v` | Display detailed "diff" information |
-
-## **`git status`**
-
-- Short Format Status Codes Appendix
-
-| Code | Meaning         |
-| ---- | --------------- |
-| `M`  | Modified        |
-| `A`  | New file staged |
-| `??` | Untracked file  |
-| `D`  | Delete file     |
-| `R`  | Renamed file    |
-| `C`  | Copied file     |
+| `git status`    | Show status of files                |
 
 ## `git status`
 
@@ -438,7 +419,6 @@ This command is a powerful tool for code review and debugging!
 
 - “HEAD -> master”: You are currently in the master branch.
 - “origin/master”: Your local master branch is synchronized with the master branch of the remote repository.
-- You need to use `git add` and `git commit` first before you can view the logs.
 
 # About branches
 
