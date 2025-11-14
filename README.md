@@ -41,7 +41,7 @@ The output PDF is `part1.pdf`.
 - [x] Replace Git Bash demo to WSL or Linux
 - [x] Better division(?)
 - [x] Add wksp routine
-- [ ] Add git installation pdf
-- [ ] Add SSH config
+- [x] Add git installation pdf
+- [x] Add SSH config
 - [ ] Fill repo url
 - [ ] Add rebase --continue and abort and -i

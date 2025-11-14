@@ -170,7 +170,7 @@ header-includes: |
 
 - WSL and Linux: use the package manager of your distro, e.g. apt, pacman, yum, etc. Configure a mirror to increase speed
 
-- Refer to PDF_GUIDE_PLACEHOLDER
+- Refer to [Git-installation.pdf](Git-installation.pdf) to install Git
 
 ## Git configuration
 
@@ -185,6 +185,8 @@ header-includes: |
 - For [FOCS](https://focs.ji.sjtu.edu.cn/git/), `EMAIL` must be your SJTU email
 
 - Refer to Pro Git p. 478 if you need to change the text editor Git uses. We recommend VS Code
+
+- Refer to [ssh_setup.pdf](ssh_setup.pdf) to set up your SSH keys with FOCS
 
 # Get your hands dirty
 
