@@ -27,10 +27,11 @@ Collaborate with your team to create an ASCII art mascot while learning Git vers
    - `rm [filename]` - Remove file
 
 3. Generate SSH key pair for secure repository access:
+   - You can refer to <https://git-scm.com/install>
    - `ssh-keygen -t ed25519 -C "your_email@domain.com"`
    - Add to SSH agent: `eval "$(ssh-agent -s)"` then `ssh-add ~/.ssh/id_ed25519`
    - Copy public key: `cat ~/.ssh/id_ed25519.pub`
-   - Add to your Git provider account
+   - Add to your Gitea -> Settings -> SSH/GPG Keys -> Manage SSH keys -> Add key
 
 ---
 
