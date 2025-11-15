@@ -220,7 +220,11 @@ A repository is:
 
 \normalsize
 
-- Practice: `cd` to `~/git_wksp` and get your template files with `git clone REPO_URL_PLACEHOLDER`
+## Practice
+
+**Exercise 1: Remote to Local**
+
+- `cd` to `~/git_wksp` and get your template files with `git clone REPO_URL_PLACEHOLDER`
 
 ## The three zones
 
@@ -429,6 +433,22 @@ This command is a powerful tool for code review and debugging!
 - “HEAD -> master”: You are currently in the master branch.
 - “origin/master”: Your local master branch is synchronized with the master branch of the remote repository.
 
+## Basic workflow
+
+```
+git clone / git init -> git status -> nano -> git add
+                             ^                   V
+                        git commit <------ git status
+```
+
+![When you commit before add](img/commit_before_add.png){ width=150px }
+
+## Practice
+
+**Exercise 2: Modification I**
+
+- Add your name (only yours) to the template and make some changes and commits
+
 # Undoing changes in Git
 
 Git provides several ways to undo changes depending on where you are in the workflow:
@@ -568,7 +588,7 @@ git log --graph --no-color --pretty=oneline --abbrev-commit
 
 ## Practice
 
-**Exercise 3** Branch and Modification II
+**Exercise 3: Branch and Modification II**
 
 Targets:
 
