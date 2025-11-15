@@ -1,4 +1,3 @@
-\lstset{basicstyle=\ttfamily,breaklines=true}
 # SSH Setup for FOCS Gitea
 
 ## Step one
@@ -47,8 +46,10 @@ If you get the following output, you have successfully set up SSH key for FOCS G
 
 ```text
 PTY allocation request failed on channel 0
-Hi there, <jAccount>! You've successfully authenticated with the key named <Key Name>, but Gitea does not provide shell access.
-If this is unexpected, please log in with password and setup Gitea under another user.
+Hi there, <jAccount>! You've successfully authenticated with the
+key named <Key Name>, but Gitea does not provide shell access.
+If this is unexpected, please log in with password and setup
+Gitea under another user.
 Connection to focs.ji.sjtu.edu.cn closed.
 ```
 
@@ -61,7 +62,8 @@ $ git clone ssh://git@focs.ji.sjtu.edu.cn:2222/engr101s1/<repo>
 or
 
 ```sh
-$ git remote add origin ssh://git@focs.ji.sjtu.edu.cn:2222/engr101s1/<repo>
+$ git remote add origin \
+ssh://git@focs.ji.sjtu.edu.cn:2222/engr101s1/<repo>
 ```
 
 Note: the web url of a focs repository has a different path from the ssh url, namely `/git/engr101s1/<repo>` for web and `/engr101s1/<repo>` for ssh. The latter is the correct path while using git.
