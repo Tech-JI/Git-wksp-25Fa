@@ -154,7 +154,7 @@ header-includes: |
 
 - Learn from the masters! [cowsay](https://en.wikipedia.org/wiki/Cowsay), [GitHub's mascot octocat](https://api.github.com/octocat), [ASCII Star wars](https://www.asciimation.co.nz/), ["Three ASCII art styles" by Roy/SAC](https://www.roysac.com/roy-sac_styles_of_underground_text_art.html), [inspirations.txt](inspirations.txt)
 
-- Copy and save a few works by others in separate files in `~/git_wksp/Others`, using shell. Get some inspiration
+- Copy and save a few works by others in separate files in `~/git_wksp/inspiration`, using shell. Get some inspiration
 
 ## Outlook
 
@@ -173,8 +173,6 @@ header-includes: |
 - Refer to [Git-installation.pdf](Git-installation.pdf) to install Git
 
 ## Git config username & email
-
-- Pro Git p. 20 "First-Time Git Setup"
 
 - `git config --global user.name <NAME>`
 
@@ -202,7 +200,7 @@ A repository is:
 
 - stored in a hidden `.git` folder in your project root directory
 
-## How to create a repository
+## Creating repositories
 
 **Create a repository = Create a standardized `.git` folder**
 
@@ -210,7 +208,7 @@ A repository is:
 
 - Use `git init` in local existing project directory
 
-- Use `git clone` to copy a remote (i.e. stored on a server) directory with all its files and histories (i.e. its `.git` folder) to your local computer
+- Use `git clone` to copy a remote directory with all its files and histories to your local computer
 
 \small
 
@@ -222,7 +220,7 @@ A repository is:
 
 \normalsize
 
-- Practice: `cd` to `~` and get your template files with `git clone REPO_URL_PLACEHOLDER`
+- Practice: `cd` to `~/git_wksp` and get your template files with `git clone REPO_URL_PLACEHOLDER`
 
 ## The three zones
 
@@ -242,7 +240,8 @@ sequenceDiagram
 
 - Staging area: "Set", files to be committed
 
-- Repository: "Go", snapshot permanently stored and **immutable**
+- Repository: "Go", snapshots permanently stored and **immutable**
+  - HEAD: A special pointer to a commit in the repository, normally the latest commit
 
 ## The four states
 
@@ -263,7 +262,7 @@ sequenceDiagram
 
 - Untracked: files Git has yet to know about
 
-- Unmodified: files that haven't been modified since last snapshot (can also be called committed from a different POV)
+- Unmodified: files that haven't been modified since last snapshot. Also called committed from a different POV
 
 - Modified: files that have been modified but not staged
 
