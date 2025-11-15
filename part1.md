@@ -62,7 +62,7 @@ header-includes: |
 
 ## Enter shell
 
-![We are not the same](git_gui_cli.png)
+![We are not the same](git_gui_cli.png){ width=150px }
 
 - Not so fast! Don't just download the files in your browser. Use shell instead, which leads us to...
 
