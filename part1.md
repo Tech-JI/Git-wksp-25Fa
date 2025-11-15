@@ -250,7 +250,8 @@ sequenceDiagram
 - Staging area: "Set", files to be committed
 
 - Repository: "Go", snapshots permanently stored. **Immutable**
-  - `HEAD`: A special pointer to the current working commit in the repository
+
+- `HEAD`: A special pointer to the current working commit in the repository
 
 ## The four states
 
@@ -316,7 +317,7 @@ sequenceDiagram
 | Command              | Function                                                  |
 | -------------------- | -------------------------------------- |
 | `git add <file>`     | Stage a specific file                                     |
-| `git add <dir>`          | Stage all changes in <dir> and subdirectories |
+| `git add <dir>`          | Stage all changes in \<dir\> and subdirectories |
 
 \normalsize
 
@@ -441,18 +442,18 @@ index 1234567..89abcde 100644
 ## Basic workflow
 
 ```
-git clone / git init -> git status -> nano -> git add
+git clone / git init -> git status -> edit -> git add
                              ^                   V
                         git commit <------ git status
 ```
 
 ![When you commit before add](img/commit_before_add.png){ width=150px }
 
-## Practice
 
-**Exercise 2: Modification I**
 
-- Add your name (only yours) to the template and make some changes and commits
+
+
+
 
 # Undoing changes in Git
 
@@ -554,7 +555,7 @@ Final result:
 
 ## Practice
 
-**Exercise 2** Modification I
+**Exercise 2 Modification I**  
 
 Targets:
 
@@ -824,12 +825,10 @@ The content between `=======` and `>>>>>>> branch-name` is from the branch you'r
 
 \vspace{-12pt}
 
-<<<<<<< HEAD
 
-- # `git merge --continue`
 
 - Run `git merge --continue` or `git rebase --continue`(you may encounter > 1 conflicts during rebase)
-  > > > > > > > f8b4295 (fix: add rebase conflict)
+
 
 \normalsize
 
