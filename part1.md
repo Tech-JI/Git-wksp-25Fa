@@ -10,7 +10,6 @@ date:
 colorlinks: true
 linkcolor: .
 urlcolor: blue
-#aspectratio: 169
 header-includes: |
   \setbeamertemplate{headline}{}
   \lstset{basicstyle=\ttfamily,frame=single,frameround=tttt,columns=fullflexible,keepspaces=true,backgroundcolor=\color{yellow!20}}
@@ -98,7 +97,7 @@ header-includes: |
 
 ## Linux shell UI
 
-![Bash on Linux](img/manjaro_kitty.png)
+![Zsh on Linux](img/manjaro_kitty.png)
 
 ## Special directories
 
@@ -309,9 +308,6 @@ sequenceDiagram
 | `git add <file>`     | Stage a specific file                                     |
 | `git add .`          | Stage all changes in current directory and subdirectories |
 
-- Description
-  This command is a crucial step in the Git workflow, moving changes from the working directory to the staging area!
-
 \normalsize
 
 ## `git commit`
@@ -333,8 +329,7 @@ sequenceDiagram
 
 ## Commit message
 
-
-\footnotesize
+\vspace{-6pt}
 
 ```
 <type>[scope]: <description>
@@ -342,7 +337,11 @@ sequenceDiagram
 
 \small
 
+\vspace{-12pt}
+
 - Usage Examples
+
+\vspace{-12pt}
 
 \scriptsize
 
@@ -358,6 +357,8 @@ sequenceDiagram
 | Maintenance tasks, tooling changes    | `git commit -m "chore: update eslint configuration"` |
 
 \small
+
+\vspace{-12pt}
 
 - More information: [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) and [its cheatsheet](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13)
 
@@ -414,9 +415,7 @@ index 1234567..89abcde 100644
  }
 ```
 
-- Description
-
-This command is a powerful tool for code review and debugging!
+**TIP:** This command is a powerful tool for code review and debugging!
 
 \normalsize
 
@@ -464,8 +463,8 @@ git restore --staged <file>
 \footnotesize
 
 | Working directory | Staging area | Repository(`HEAD`) |
-| ----------------- | ------------ | ---------------- |
-| C                 | C            | B                |
+| ----------------- | ------------ | ------------------ |
+| C                 | C            | B                  |
 
 \normalsize
 
@@ -486,8 +485,8 @@ git restore --staged <file>
 \footnotesize
 
 | Working directory | Staging area | Repository(`HEAD`) |
-| ----------------- | ------------ | ---------------- |
-| C                 | B            | B                |
+| ----------------- | ------------ | ------------------ |
+| C                 | B            | B                  |
 
 \normalsize
 
@@ -508,8 +507,8 @@ Final result:
 \footnotesize
 
 | Working directory | Staging area | Repository(`HEAD`) |
-| ----------------- | ------------ | ---------------- |
-| B                 | B            | B                |
+| ----------------- | ------------ | ------------------ |
+| B                 | B            | B                  |
 
 \normalsize
 
@@ -524,6 +523,8 @@ Final result:
 - Same goes for `HEAD~n`
 
 - More information: [Pro Git Chapter 7.1](https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection)
+
+`C`'s changes completely deleted.
 
 # About branches
 
@@ -566,6 +567,34 @@ git log --graph --no-color --pretty=oneline --abbrev-commit
 |`git merge <from>`|Merge commits from other branches to the current one|
 |`git rebase <from>`|Rebase current branch on another one|
 
+## `git branch`
+
+- List, create, or delete branches
+
+- General Input
+
+| Command                                 | Description                                  |
+| --------------------------------------- | -------------------------------------------- |
+| `git branch <name>`                     | Create a local branch `name`                 |
+| `git branch --list`                     | List all branches                            |
+| `git branch -u <upstream>` `<name>`     | Set the remote branch of local branch `name` |
+| `git branch -m <old-name>` `<new-name>` | Rename the branch                            |
+| `git branch -d <name>`                  | Delete the branch `name`                     |
+
+## `git checkout`
+
+- Switch branches or restore working tree files
+
+- General Input
+
+| Command               | Description             |
+| --------------------- | ----------------------- |
+| `git checkout <name>` | Switch to branch `name` |
+
+**NOTE:** Before switching branch, make sure all your changes are committed or in staging area, or else you won't be able to switch!
+
+**TIP:** You can also use `git switch <name>` to switch to branch `name`.
+
 ## Practice
 
 **Exercise 3** Branch and Modification II
@@ -580,15 +609,13 @@ Targets:
 
 - Commit your changes
 
-- Push your commits to the remote repository
-
 ## Merge vs. Rebase
 
 Branches can be merged or rebased together to combine changes from multiple sources.
 
 Example: `master` -> `fix`
 
-**Merge**
+**Merge** (`git merge master` on branch `fix`)
 
 ```
       E---F (fix)                E---F---G (fix)
@@ -597,8 +624,9 @@ A---B---C---D (master)     A---B---C---D (master)
 ```
 
 - `G` is a new commit containing all files' latest snapshots from `C` and `D`.
-- Keeps complete historical records.
-- Non destructive operation.
+- Keeps complete historical records. (non-destructive)
+
+**TIP:** Use `-m` option when performing `git merge` to specify your custom merge commit message.
 
 ## Merge vs. Rebase
 
@@ -606,7 +634,7 @@ Branches can be merged or rebased together to combine changes from multiple sour
 
 Example: `master` -> `fix`
 
-**Rebase**
+**Rebase** (`git rebase master` on branch `fix`)
 
 \small
 
@@ -662,26 +690,29 @@ A---B (master)             A---B---C---D---E (master & fix)
 
 ## Common remote operations
 
+\small
+
 <!--prettier-ignore-->
 | Command                       | Description                                        |
 | ----------------------------------- | -------------------------------------------- |
-| `git remote add <name> <url>` | Add a remote repository                            |
+| `git remote add <name> <url>` | Link to a remote repository                            |
 | `git remote -v`               | List remote repositories                           |
 | `git push [remote] [branch]`  | Upload local commits to a remote repository        |
 | `git pull [remote] [branch]`  | Download and merge from a remote repository        |
-| `git fetch [remote]`          | Download objects and refs from a remote repository |
 
-## `git push`
+\normalsize
 
-### Popular Git hosting platforms
+**NOTE:** When you perform `git pull`, you'll likely be greeted with merge conflict. We will talk about how to resolve it later.
 
-\small
+## Popular Git hosting platforms
 
 - **GitHub**: Most popular platform, owned by Microsoft
+
 - **GitLab**: Offers both cloud and self-hosted solutions
+
 - **Bitbucket**: Popular among enterprise users, owned by Atlassian
+
 - **FOCS Git**: The internal GC Git platform
-  \normalsize
 
 # Solving conflicts in Git
 
@@ -743,7 +774,7 @@ The content between `=======` and `>>>>>>> branch-name` is from the branch you'r
 
 \vspace{-12pt}
 
-- Use `git add <filename>` or `git add .` to stage all resolved files
+- Use `git add <filename>` to stage your resolved files
 
 \vspace{-12pt}
 
@@ -751,7 +782,7 @@ The content between `=======` and `>>>>>>> branch-name` is from the branch you'r
 
 \vspace{-12pt}
 
-- `git commit -m "Resolve merge conflict in <filename>"`
+- `git merge --continue`
 
 \normalsize
 
@@ -797,6 +828,20 @@ This is the content I want to keep
 
 - **Dedicated tools**: `meld`, `p4merge`, `bc` (Beyond Compare)
 
+## Practice
+
+**Exercise 4** Merge & Conflict
+
+Targets:
+
+- Everyone pushes changes to the remote repository
+
+- Choose a team member to pull all changes to his/her local repository
+
+- Merge all branches into `master` and resolve the conflicts
+
+- Add the authors and push
+
 # Other common Git issues
 
 ## Common issues
@@ -815,6 +860,12 @@ This is the content I want to keep
 **2. Made a mistake in the commit message:**
 
 - Solution: `git commit --amend -m "corrected message"` to update the last commit message
+
+\normalsize
+
+## Common issues
+
+\small
 
 **3. Forgot to add a file to the last commit:**
 
