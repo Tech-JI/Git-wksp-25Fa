@@ -172,7 +172,7 @@ header-includes: |
 
 - Refer to [Git-installation.pdf](Git-installation.pdf) to install Git
 
-## Git configuration
+## Git config username & email
 
 - Pro Git p. 20 "First-Time Git Setup"
 
@@ -180,9 +180,13 @@ header-includes: |
 
 - `git config --global user.email <EMAIL>`
 
-- Enclose `NAME` in double quotes if it contains spaces
+## Git config authenticity
 
 - For [FOCS](https://focs.ji.sjtu.edu.cn/git/), `EMAIL` must be your SJTU email
+
+![Git config impersonation](img/git-config-impersonation.png){ width=250px }
+
+## Git config text editor & ssh
 
 - Refer to Pro Git p. 478 if you need to change the text editor Git uses. We recommend nano and VS Code
 
