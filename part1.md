@@ -62,7 +62,7 @@ header-includes: |
 
 ## Enter shell
 
-![We are not the same](img/git_gui_cli.png){ width=150px }
+![Use git cli](img/git_gui_cli.png){ width=150px }
 
 - Not so fast! Don't just download the files in your browser. Use shell instead, which leads us to...
 
@@ -168,7 +168,7 @@ header-includes: |
 
 - Windows native: download setup program and double click
 
-- WSL and Linux: use the package manager of your distro, e.g. apt, pacman, yum, etc. Configure a mirror to increase speed
+- WSL and Linux: use the package manager of your distro. Configure a mirror to increase speed
 
 - Refer to [Git-installation.pdf](Git-installation.pdf) to install Git
 
@@ -356,6 +356,10 @@ sequenceDiagram
 | Code refastoring (no feature or fix)  | `git commit -m "refactor: extract payment service"` |
 | Test-related changes                  | `git commit -m "test: add e2e tests for checkout"` |
 | Maintenance tasks, tooling changes    | `git commit -m "chore: update eslint configuration"` |
+
+\small
+
+More information: [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) and [its cheatsheet](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13)
 
 \normalsize
 
