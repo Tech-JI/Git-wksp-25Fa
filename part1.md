@@ -229,7 +229,7 @@ A repository is:
 
 \center
 
-```{.mermaid caption="The three zones" format=pdf width=300}
+```{.mermaid caption="The three zones" format=pdf width=300 height=100 }
 sequenceDiagram
     participant wd as Working Directory
     participant sa as Staging Area
@@ -239,12 +239,12 @@ sequenceDiagram
     sa->>repo: Commit
 ```
 
-- Working directory: "Ready", status quo of files on your computer
+- Working directory: "Ready", current state of local files
 
 - Staging area: "Set", files to be committed
 
 - Repository: "Go", snapshots permanently stored. **Immutable**
-  - `HEAD`: A special pointer to the current commit in the repository
+  - `HEAD`: A special pointer to the current working commit in the repository
 
 ## The four states
 
@@ -310,7 +310,7 @@ sequenceDiagram
 | Command              | Function                                                  |
 | -------------------- | -------------------------------------- |
 | `git add <file>`     | Stage a specific file                                     |
-| `git add .`          | Stage all changes in current directory and subdirectories |
+| `git add <dir>`          | Stage all changes in <dir> and subdirectories |
 
 \normalsize
 
@@ -355,8 +355,8 @@ sequenceDiagram
 | A new feature                         | `git commit -m "feat: implement dark mode` `toggle"`       |
 | Bug fix                               | `git commit -m "fix: correct calculation in` `cart total"` |
 | Documentation changes                 | `git commit -m "docs: add installation guide"`           |
-| Code style changes (formatting, etc.) | `git commit -m "style: fix indentation in` `components"`   |
-| Code refastoring (no feature or fix)  | `git commit -m "refactor: extract payment service"` |
+| Code style changes                    | `git commit -m "style: fix indentation in` `components"`   |
+| refactor code structure               | `git commit -m "refactor: extract payment service"` |
 | Test-related changes                  | `git commit -m "test: add e2e tests for checkout"` |
 | Maintenance tasks, tooling changes    | `git commit -m "chore: update eslint configuration"` |
 
@@ -473,7 +473,7 @@ git restore --staged <file>
 - E.g. `git reset --soft HEAD~1`:
 
 ```
-        A---B---C        ==>        A---B---C
+        A---B---C        ==>        A---B
                 ^                       ^
               HEAD                    HEAD
 ```
@@ -495,7 +495,7 @@ git restore --staged <file>
 - E.g. `git reset --mixed HEAD~1`:
 
 ```
-        A---B---C        ==>        A---B---C
+        A---B---C        ==>        A---B
                 ^                       ^
               HEAD                    HEAD
 ```
@@ -633,7 +633,7 @@ Targets:
 
 Branches can be merged or rebased together to combine changes from multiple sources.
 
-Example: `master` -> `fix`
+Example: merge `master` -> `fix`
 
 **Merge** (`git merge master` on branch `fix`)
 
@@ -643,16 +643,22 @@ Example: `master` -> `fix`
 A---B---C---D (master)     A---B---C---D (master)
 ```
 
+<<<<<<< HEAD
 - `G` is a new commit containing all files' latest snapshots from `C` and `D`.
 - Keeps complete historical records. (non-destructive)
 
 **TIP:** Use `-m` option when performing `git merge` to specify your custom merge commit message.
+=======
+- `G` is a new commit containing all files' latest snapshots from `F` and `D`.
+- Keeps complete historical records.
+- Non destructive operation.
+>>>>>>> 7c5806c (fix: format and add some clarifications)
 
 ## Merge vs. Rebase
 
 Branches can be merged or rebased together to combine changes from multiple sources.
 
-Example: `master` -> `fix`
+Example: rebase `fix` -> `master`
 
 **Rebase** (`git rebase master` on branch `fix`)
 
@@ -740,7 +746,7 @@ A---B (master)             A---B---C---D---E (master & fix)
 
 A merge conflict occurs when Git cannot automatically reconcile differences between two commits during a merge operation.
 
-This typically happens when the same lines in the same file have been modified in different branches that are being merged.
+This typically happens when the same lines in the same file have been modified by different commits or in different branches that are being merged.
 
 ## How to identify a conflict
 
@@ -794,7 +800,7 @@ The content between `=======` and `>>>>>>> branch-name` is from the branch you'r
 
 \vspace{-12pt}
 
-- Use `git add <filename>` to stage your resolved files
+- Use `git add <filename>` or `git add <dir>` to stage all resolved files
 
 \vspace{-12pt}
 
@@ -877,27 +883,26 @@ Targets:
 - Error: `nothing to commit, working tree clean`
 - Solution: Use `git add <filename>` to stage files, then commit again
 
-**2. Made a mistake in the commit message:**
 
-- Solution: `git commit --amend -m "corrected message"` to update the last commit message
-
-\normalsize
-
-## Common issues
-
-\small
-
-**3. Forgot to add a file to the last commit:**
-
-- Solution: Add the file with `git add <filename>`, then use `git commit --amend` to include it in the previous commit
-
-**4. Accidentally modified the wrong branch:**
+**2. Accidentally write on the wrong branch:**
 
 - Solution: Use `git stash` to save changes, switch to correct branch, then `git stash pop` to apply changes there
 
-**5. Conflicts during merge:**
+**3. Conflicts during merge:**
 
 - Solution: Manually edit conflicted files to resolve conflicts (look for `<<<<<<<`, `=======`, `>>>>>>>` markers), then add and commit the resolved files
+
+---
+
+**4. Made a mistake in the commit message:**
+
+- Solution: `git commit --amend -m "corrected message"` to update the last commit message
+
+**5. Forgot to add a file to the last commit:**
+
+- Solution: Add the file with `git add <filename>`, then use `git commit --amend` to include it in the previous commit
+
+**Side note**: If you have already pushed to remote, its recommended to fix **4** and **5** with another commit, because the command above will modify git history.
 
 \normalsize
 
