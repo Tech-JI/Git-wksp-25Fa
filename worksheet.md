@@ -1,43 +1,38 @@
-# Git Worksheet 
+# Git Worksheet
 
-For Git Workshop, Tech GC, November 16, 2025
+*Git Workshop -- Tech GC -- November 16, 2025*
 
-## Activity Overview
+## *Activity Overview*
 
 **Activity Name**: ASCII Art Mascot Collaborative Puzzle\
 **Objective**: Learn Git branch management, merging, and conflict resolution through collaborative ASCII art creation.\
 **Group Size**: 2-4 people per group
 
-## Exercises
+---
 
-- ### Exercise 0 : Environment Setup
+## *Exercises* 
 
-#### **SSH Setup**
+### **Exercise 0 : Environment Setup**
 
-Generate SSH Key:
+*SSH Setup*: Refer to [ssh_setup.pdf](ssh_setup.pdf)
+
+### **Exercise 1 : Remote to Local**
+
+- **Create and connect repository.** Recommended Command:
+
 ```
-ssh-keygen -t ed25519 -C "your_sjtu_email@sjtu.edu.cn"
-
-eval "$(ssh-agent -s)"
-ssh-add ~/.ssh/id_ed25519
-```
-
-Copy Key and Add to GitHub:
-```
-cat ~/.ssh/id_ed25519.pub
-```
-
-- ### Exercise 1 : Remote to Local
-
-Create and connect repository.
-```
-git init
+git config
 git clone
 ```
 
-- ### Exercise 2 : Modification I
+> 📥 *Get the template of the mascot.*
 
-Change your file and commit the changes.
+<div style="page-break-after: always;"></div>
+
+### **Exercise 2 : Modification I**
+
+- **Change your file and commit the changes.** Recommended Command:
+
 ```
 git status
 git add
@@ -47,28 +42,59 @@ git commit
 git reset
 ```
 
-- ### Exercise 3 : Branch & Modification II
+> ✏️ *Add the author name.*
 
-Create and switch branches.
+### **Exercise 3 : Branch & Modification II**
+
+- **Create and switch branches.** Recommended Command:
+
 ```
 git branch
 git checkout
 ```
 
-Change and commit again, and then push to the remote repository.
+- **Change and commit again, and then push to the remote repository.** Recommended Command:
+
 ```
 git push
 ```
 
-- ### Exercise 4 : Merge & Conflict
+> 🎨 *Create your own mascot!*
 
-Merge the branches and resolve conflict.
+### **Exercise 4 : Merge & Conflict**
+
+- **Merge the branches and resolve conflict.** Recommended Command：
+
 ```
 git merge
 git rebase
 ```
 
-## Activity Checklist
+> 🔧 *Manually edit to resolve conflicts.*\
+> ✅ *Complete the whole mascot design.*
+
+<div style="page-break-after: always;"></div>
+
+### *Final Result Example*
+
+```
+     /\_____/\    
+    (  = . =  ) 
+    >    ^    <   
+    | SJTU-GC |   
+    |---------|   
+    |make real|   
+    \_changes_/   
+    /         \    
+   /_/\/\_/\/\_\
+   Git Wksp 2025
+```
+
+💡Note: This is merely an example. Feel free to deviate completely from it — let your imagination flow and guide you anywhere. We can't wait to see the unique creations you'll bring to life!
+
+---
+
+## *Activity Checklist*
 
 ### Preparation Phase
 
@@ -91,4 +117,6 @@ git rebase
 - [ ] Work showcase and sharing
 - [ ] Git techniques review
 
-Now that you have mastered the core workflow of Git, keep exploring and make it a powerful assistant in your collaborative projects! 
+***
+
+*Now that you have mastered the core workflow of Git, keep exploring and make it a powerful assistant in your collaborative projects!*
