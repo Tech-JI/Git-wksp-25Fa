@@ -134,7 +134,7 @@ header-includes: |
 
 \normalsize
 
-- Use `COMMAND -h`, `COMMAND --help`, `man COMMAND`, or google "COMMAND man page" to get more information
+- More information: use `COMMAND -h`, `COMMAND --help`, `man COMMAND`, or google "COMMAND man page"
 
 ## Invoke text editor in shell
 
@@ -186,7 +186,7 @@ header-includes: |
 
 ## Git config text editor & ssh
 
-- Refer to Pro Git p. 478 if you need to change the text editor Git uses. We recommend nano and VS Code
+- Refer to [Pro Git A3.1](https://git-scm.com/book/en/v2/Appendix-C:-Git-Commands-Setup-and-Config) if you need to change the text editor Git uses. We recommend nano and VS Code
 
 - Refer to [ssh_setup.pdf](ssh_setup.pdf) to set up your SSH keys with FOCS
 
@@ -240,8 +240,8 @@ sequenceDiagram
 
 - Staging area: "Set", files to be committed
 
-- Repository: "Go", snapshots permanently stored and **immutable**
-  - HEAD: A special pointer to a commit in the repository, normally the latest commit
+- Repository: "Go", snapshots permanently stored. **Immutable**
+  - `HEAD`: A special pointer to the current commit in the repository
 
 ## The four states
 
@@ -333,9 +333,6 @@ sequenceDiagram
 
 ## Commit message
 
-\small
-
-- Format
 
 \footnotesize
 
@@ -362,7 +359,7 @@ sequenceDiagram
 
 \small
 
-More information: [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) and [its cheatsheet](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13)
+- More information: [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/) and [its cheatsheet](https://gist.github.com/qoomon/5dfcdf8eec66a051ecd85625518cfd13)
 
 \normalsize
 
@@ -452,67 +449,81 @@ git restore --staged <file>
 
 **Undoing commits** (locally only!)
 
-- Soft Reset: Moves the branch pointer back but keeps changes in staging area
+- Soft Reset: Moves branch pointer back. Keeps changes in staging area
 
-Before:
-
-```
-A---B---C
-        ^
-      HEAD
-```
-
-After `git reset --soft HEAD~1`:
+- E.g. `git reset --soft HEAD~1`:
 
 ```
-A---B---C
-    ^
-  HEAD
+        A---B---C        ==>        A---B---C
+                ^                       ^
+              HEAD                    HEAD
 ```
 
-`C`'s changes are put in staging area.
+`C`'s changes are put in staging area. Final result:
+
+\footnotesize
+
+| Working directory | Staging area | Repository(`HEAD`) |
+| ----------------- | ------------ | ---------------- |
+| C                 | C            | B                |
+
+\normalsize
 
 ## Undoing changes in Git
 
-- Mixed Reset: Moves the branch pointer back and keeps changes in working directory
+- Mixed Reset: Moves branch pointer back. Keeps changes in working directory
 
-Before:
-
-```
-A---B---C
-        ^
-      HEAD
-```
-
-After `git reset --mixed HEAD~1`:
+- E.g. `git reset --mixed HEAD~1`:
 
 ```
-A---B---C
-    ^
-  HEAD
+        A---B---C        ==>        A---B---C
+                ^                       ^
+              HEAD                    HEAD
 ```
 
-`C`'s changes are put in working directory.
+`C`'s changes are put in working directory. Final result:
+
+\footnotesize
+
+| Working directory | Staging area | Repository(`HEAD`) |
+| ----------------- | ------------ | ---------------- |
+| C                 | B            | B                |
+
+\normalsize
 
 ## Undoing Changes in Git
 
 - Hard Reset: Moves the branch pointer back and discards all changes
 
-Before:
+- E.g. `git reset --haed HEAD~1`:
 
 ```
-A---B---C
-        ^
-      HEAD
+        A---B---C        ==>        A---B
+                ^                       ^
+              HEAD                    HEAD
 ```
 
-After `git reset --hard HEAD~1`:
+Final result:
 
-```
-A---B
-    ^
-  HEAD
-```
+\footnotesize
+
+| Working directory | Staging area | Repository(`HEAD`) |
+| ----------------- | ------------ | ---------------- |
+| B                 | B            | B                |
+
+\normalsize
+
+## `HEAD~1` explained
+
+- Recall that `HEAD` points to the latest commit in the repository
+
+- `HEAD~1` stands for the parent commit of `HEAD`
+
+- `HEAD~2` stands for the parent of the parent of `HEAD`. It's equivalent to `HEAD~~`
+
+- Same goes for `HEAD~n`
+
+- More information: [Pro Git Chapter 7.1](https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection)
 
 # About branches
 
