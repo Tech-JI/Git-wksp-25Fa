@@ -223,7 +223,13 @@ A repository is:
 
 **Exercise 1: Remote to Local**
 
-- `cd` to `~/git_wksp` and get your template files with `git clone REPO_URL_PLACEHOLDER`
+Targets:
+
+- Change directory to `~`, i.e. home directory
+
+- Clone your remote repository to local
+
+- Configure your name and email
 
 ## The three zones
 
@@ -546,6 +552,22 @@ Final result:
 
 `C`'s changes completely deleted.
 
+## Practice
+
+**Exercise 2** Modification I
+
+Targets:
+
+- Add author name (i.e. your own name) to your mascot file
+
+- Check the status of the local repository
+
+- Check the changes (diff) you have made
+
+- Commit your changes
+
+- Undo your commit (put changes in staging area)
+
 # About branches
 
 ## What are branches?
@@ -854,7 +876,7 @@ This is the content I want to keep
 
 ## Practice
 
-**Exercise 4** Merge & Conflict
+**Exercise 4: Merge & Conflict**
 
 Targets:
 

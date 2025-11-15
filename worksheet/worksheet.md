@@ -1,8 +1,8 @@
 # Git Worksheet
 
-*Git Workshop -- Tech GC -- November 16, 2025*
+_Git Workshop -- Tech GC -- November 16, 2025_
 
-## *Activity Overview*
+## _Activity Overview_
 
 **Activity Name**: ASCII Art Mascot Collaborative Puzzle
 
@@ -14,15 +14,15 @@
 
 ---
 
-## *Exercises* 
+## _Exercises_
 
 ### **Exercise 0 : Environment Setup**
 
-*SSH Setup*: Refer to [ssh_setup.pdf](ssh_setup.pdf)
+_SSH Setup_: Refer to [ssh_setup.pdf](ssh_setup.pdf)
 
 ### **Exercise 1 : Remote to Local**
 
-> 📥 *Get the template of the mascot.*
+> 📥 _Get the template of the mascot._
 
 - **Create and connect repository.** Recommended Command:
 
@@ -36,7 +36,7 @@ git clone
 
 ### **Exercise 2 : Modification I**
 
-> ✏️ *Add the author name.*
+> ✏️ _Add the author name._
 
 - **Change your file and commit the changes.** Recommended Command:
 
@@ -50,7 +50,7 @@ git commit
 
 ### **Exercise 3 : Branch & Modification II**
 
-> 🎨 *Create your own mascot!*
+> 🎨 _Create your own mascot!_
 
 - **Create and switch branches.** Recommended Command:
 
@@ -60,16 +60,18 @@ git branch
 git checkout
 ```
 
-- **Change and commit again, and then push to the remote repository.** Recommended Command:
+- **Change and commit again**
+
+### **Exercise 4 : Merge & Conflict**
+
+> 🔧 _Manually edit to resolve conflicts._\
+> ✅ _Complete the whole mascot design._
+
+- **Push changes to the remote repository.** Recommended Command:
 
 ```
 git push
 ```
-
-### **Exercise 4 : Merge & Conflict**
-
-> 🔧 *Manually edit to resolve conflicts.*\
-> ✅ *Complete the whole mascot design.*
 
 - **Merge the branches and resolve conflict.** Recommended Command：
 
@@ -80,17 +82,17 @@ git rebase
 
 <div style="page-break-after: always;"></div>
 
-### *Final Result Example*
+### _Final Result Example_
 
 ```
-     /\_____/\    
-    (  = . =  ) 
-    >    ^    <   
-    | SJTU-GC |   
-    |---------|   
-    |make real|   
-    \_changes_/   
-    /         \    
+     /\_____/\
+    (  = . =  )
+    >    ^    <
+    | SJTU-GC |
+    |---------|
+    |make real|
+    \_changes_/
+    /         \
    /_/\/\_/\/\_\
    Git Wksp 2025
 ```
@@ -99,7 +101,7 @@ git rebase
 
 ---
 
-## *Activity Checklist*
+## _Activity Checklist_
 
 ### Preparation Phase
 
@@ -108,7 +110,7 @@ git rebase
 - [ ] Participant Git basic training
 - [ ] Role assignment clarified
 
-### Execution Phase  
+### Execution Phase
 
 - [ ] Acquisition of basic Git commands
 - [ ] All branches created successfully
@@ -122,6 +124,6 @@ git rebase
 - [ ] Work showcase and sharing
 - [ ] Git techniques review
 
-***
+---
 
-*Now that you have mastered the core workflow of Git, keep exploring and make it a powerful assistant in your collaborative projects!*
+_Now that you have mastered the core workflow of Git, keep exploring and make it a powerful assistant in your collaborative projects!_
