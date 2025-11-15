@@ -62,7 +62,7 @@ header-includes: |
 
 ## Enter shell
 
-![We are not the same](git_gui_cli.png){ width=150px }
+![We are not the same](img/git_gui_cli.png){ width=150px }
 
 - Not so fast! Don't just download the files in your browser. Use shell instead, which leads us to...
 
@@ -94,11 +94,11 @@ header-includes: |
 
 ## WSL shell UI
 
-![Understanding WSL shell](understanding_wsl_shell.png)
+![Understanding WSL shell](img/understanding_wsl_shell.png)
 
 ## Linux shell UI
 
-![Bash on Linux](manjaro_kitty.png)
+![Bash on Linux](img/manjaro_kitty.png)
 
 ## Special directories
 
@@ -420,7 +420,7 @@ This command is a powerful tool for code review and debugging!
 
 - View the submission history
 
-![git-log](git-log.jpg)
+![git-log](img/git-log.jpg)
 
 - “HEAD -> master”: You are currently in the master branch.
 - “origin/master”: Your local master branch is synchronized with the master branch of the remote repository.
@@ -644,14 +644,6 @@ Extend the previous branch structure to this:
      /       /               \
 A---B---C---D---E---J'---K'---L (master)
 ```
-
-## What is `HEAD`
-
-`HEAD` is:
-
-- A special pointer in your repository that points to the commit your current work is based on
-
-- Useful when performing some commands
 
 # Remote repositories
 
