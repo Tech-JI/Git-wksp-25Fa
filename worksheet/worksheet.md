@@ -4,9 +4,13 @@
 
 ## *Activity Overview*
 
-**Activity Name**: ASCII Art Mascot Collaborative Puzzle\
-**Objective**: Learn Git branch management, merging, and conflict resolution through collaborative ASCII art creation.\
+**Activity Name**: ASCII Art Mascot Collaborative Puzzle
+
+**Objective**: Learn Git branch management, merging, and conflict resolution through collaborative ASCII art creation.
+
 **Group Size**: 2-4 people per group
+
+**Team Roles Reference**: Head Designer, Body Designer, Leg Designer, Background Designer
 
 ---
 
@@ -18,18 +22,21 @@
 
 ### **Exercise 1 : Remote to Local**
 
+> 📥 *Get the template of the mascot.*
+
 - **Create and connect repository.** Recommended Command:
 
 ```
 git config
+git init
 git clone
 ```
-
-> 📥 *Get the template of the mascot.*
 
 <div style="page-break-after: always;"></div>
 
 ### **Exercise 2 : Modification I**
+
+> ✏️ *Add the author name.*
 
 - **Change your file and commit the changes.** Recommended Command:
 
@@ -39,16 +46,16 @@ git add
 git diff
 git status
 git commit
-git reset
 ```
 
-> ✏️ *Add the author name.*
-
 ### **Exercise 3 : Branch & Modification II**
+
+> 🎨 *Create your own mascot!*
 
 - **Create and switch branches.** Recommended Command:
 
 ```
+git reset
 git branch
 git checkout
 ```
@@ -59,9 +66,10 @@ git checkout
 git push
 ```
 
-> 🎨 *Create your own mascot!*
-
 ### **Exercise 4 : Merge & Conflict**
+
+> 🔧 *Manually edit to resolve conflicts.*\
+> ✅ *Complete the whole mascot design.*
 
 - **Merge the branches and resolve conflict.** Recommended Command：
 
@@ -69,9 +77,6 @@ git push
 git merge
 git rebase
 ```
-
-> 🔧 *Manually edit to resolve conflicts.*\
-> ✅ *Complete the whole mascot design.*
 
 <div style="page-break-after: always;"></div>
 
@@ -90,7 +95,7 @@ git rebase
    Git Wksp 2025
 ```
 
-💡Note: This is merely an example. Feel free to deviate completely from it — let your imagination flow and guide you anywhere. We can't wait to see the unique creations you'll bring to life!
+💡Note: his is merely an example. Feel free to deviate completely from it — let your imagination flow and guide you anywhere. We can't wait to see the unique creations you'll bring to life!
 
 ---
 
