@@ -180,7 +180,7 @@ header-includes: |
 
 ## Git config authenticity
 
-- For [FOCS](https://focs.ji.sjtu.edu.cn/git/), `EMAIL` must be your SJTU email
+- For [FOCS Git](https://focs.ji.sjtu.edu.cn/git/), `EMAIL` must be your SJTU email
 
 ![Git config impersonation](img/git-config-impersonation.png){ width=250px }
 
@@ -650,19 +650,6 @@ A---B (master)             A---B---C---D---E (master & fix)
 
 - No new commit is created.
 
-## Practice
-
-Extend the previous branch structure to this:
-
-```
-         F---G---H---I---- (new-point-a & fix-grammar)
-        /                 \
-       /                   \
-      /       J---K (new-point-b)
-     /       /               \
-A---B---C---D---E---J'---K'---L (master)
-```
-
 # Remote repositories
 
 ## What are remote repositories?
@@ -675,8 +662,6 @@ A---B---C---D---E---J'---K'---L (master)
 
 ## Common remote operations
 
-\small
-
 <!--prettier-ignore-->
 | Command                       | Description                                        |
 | ----------------------------------- | -------------------------------------------- |
@@ -686,7 +671,7 @@ A---B---C---D---E---J'---K'---L (master)
 | `git pull [remote] [branch]`  | Download and merge from a remote repository        |
 | `git fetch [remote]`          | Download objects and refs from a remote repository |
 
-\normalsize
+## `git push`
 
 ### Popular Git hosting platforms
 
@@ -697,10 +682,6 @@ A---B---C---D---E---J'---K'---L (master)
 - **Bitbucket**: Popular among enterprise users, owned by Atlassian
 - **FOCS Git**: The internal GC Git platform
   \normalsize
-
-## Practice
-
-Create a remote repository on [FOCS Git](https://focs.ji.sjtu.edu.cn/git) and push your Survival Guide to it.
 
 # Solving conflicts in Git
 
