@@ -15,8 +15,12 @@ from giteahelper import create_teams_and_repos
 def get_username_from_email(emails: List[str]) -> List[str]:
     usernames = []
     for email in emails:
-        # Extract username from email (assumes SJTU email format)
+        # Add @sjtu.edu.cn to account names to turn them into email addresses
         email = email.strip()
+        if "@" not in email:
+            # This is an account name, add the domain to make it an email
+            email = email + "@sjtu.edu.cn"
+
         if not email.endswith("@sjtu.edu.cn"):
             print(f"Warning: Email {email} is not an SJTU email address")
             continue
