@@ -362,7 +362,7 @@ sequenceDiagram
 | Bug fix                               | `git commit -m "fix: correct calculation in` `cart total"` |
 | Documentation changes                 | `git commit -m "docs: add installation guide"`           |
 | Code style changes                    | `git commit -m "style: fix indentation in` `components"`   |
-| refactor code structure               | `git commit -m "refactor: extract payment service"` |
+| Refactor code structure               | `git commit -m "refactor: extract payment service"` |
 | Test-related changes                  | `git commit -m "test: add e2e tests for checkout"` |
 | Maintenance tasks, tooling changes    | `git commit -m "chore: update eslint configuration"` |
 
@@ -825,10 +825,11 @@ The content between `=======` and `>>>>>>> branch-name` is from the branch you'r
 \vspace{-12pt}
 
 <<<<<<< HEAD
-- `git merge --continue`
-=======
+
+- # `git merge --continue`
+
 - Run `git merge --continue` or `git rebase --continue`(you may encounter > 1 conflicts during rebase)
->>>>>>> f8b4295 (fix: add rebase conflict)
+  > > > > > > > f8b4295 (fix: add rebase conflict)
 
 \normalsize
 
@@ -903,14 +904,13 @@ Targets:
 - Error: `nothing to commit, working tree clean`
 - Solution: Use `git add <filename>` to stage files, then commit again
 
-
 **2. Accidentally write on the wrong branch:**
 
 - Solution: Use `git stash` to save changes, switch to correct branch, then `git stash pop` to apply changes there
 
 **3. Conflicts during merge:**
 
-- Solution: Please refer to **Solving conflicts in Git** section.  
+- Solution: Please refer to **Solving conflicts in Git** section.
 
 ---
 
