@@ -24,7 +24,7 @@ _SSH Setup_: Refer to [ssh_setup.pdf](ssh_setup.pdf)
 
 > 📥 _Get the template of the mascot._
 
-- **Create and connect repository.** Recommended Command:
+- **Create and connect repository.** Recommended Commands:
 
 ```
 git config
@@ -38,13 +38,12 @@ git clone
 
 > ✏️ _Add the author name._
 
-- **Change your file and commit the changes.** Recommended Command:
+- **Change your file and commit the changes.** Recommended Commands:
 
 ```
 git status
 git add
 git diff
-git status
 git commit
 ```
 
@@ -52,7 +51,7 @@ git commit
 
 > 🎨 _Create your own mascot!_
 
-- **Create and switch branches.** Recommended Command:
+- **Create and switch branches.** Recommended Commands:
 
 ```
 git reset
@@ -73,7 +72,7 @@ git checkout
 git push
 ```
 
-- **Merge the branches and resolve conflict.** Recommended Command：
+- **Merge the branches and resolve conflict.** Recommended Commands：
 
 ```
 git merge
