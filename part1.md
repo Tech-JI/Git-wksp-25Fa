@@ -722,6 +722,10 @@ This is the content I want to keep
 
 ## Common issues
 
+**0. The `.gitignore` file:**
+
+- The `.gitignore` file excludes some files from adding. [RTFM](https://git-scm.com/docs/gitignore)
+
 **1. Forgot to stage files before committing:**
 
 - Error: `nothing to commit, working tree clean`

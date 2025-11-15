@@ -35,7 +35,7 @@ The output PDF is `part1.pdf`.
 - [x] Mention right-click to paste in Git Bash
 - [x] Manual merge
 - [x] Git Bash tab completion
-- [ ] Add .gitignore in slides
+- [x] Add .gitignore in slides
 - [x] Add git model
 - [ ] Fix undo arrangement, remove duplication
 - [x] Replace Git Bash demo to WSL or Linux
