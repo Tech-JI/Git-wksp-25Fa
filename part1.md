@@ -56,13 +56,13 @@ header-includes: |
 
 - [pass](https://www.passwordstore.org/): a password manager using Git to track and sync passwords
 
-- [sindresorhus/awesome](https://github.com/sindresorhus/awesome): an online Git repository sharing self-study material
+- [sindresorhus/awesome](https://github.com/sindresorhus/awesome): an online Git repository containing everything you'll ever need to self-study any subject in Computer Science
 
-- It's our turn! We're gonna design an ASCII art GC mascot with Git. Template files are at REPO_URL_PLACEHOLDER
+- It's our turn! GC has a blue tiger mascot right now, but let's get creative. We're gonna design our own ASCII art GC mascot with Git. Template files are at REPO_URL_PLACEHOLDER
 
 ## Enter shell
 
-![Use Git via command line](git_gui_cli.png)
+![We are not the same](git_gui_cli.png)
 
 - Not so fast! Don't just download the files in your browser. Use shell instead, which leads us to...
 
@@ -124,12 +124,12 @@ header-includes: |
 <!--prettier-ignore-->
 | Command                      | Action                                                                |
 | ---------------------------- | --------------------------------------------------------------------- |
-| `cd [DIRECTORY]`             | Change working directory to `DIRECTORY`, default home directory       |
-| `ls [-a]` `[-l] [DIRECTORY]`   | List files in `DIRECTORY`, default CWD; -a show hidden files; -l show more info |
+| `cd [DIRECTORY]`             | Change working directory to `DIRECTORY`, default: home directory       |
+| `ls [-a]` `[-l] [DIRECTORY]` | List files in `DIRECTORY`, default: CWD; -a show hidden files; -l show more info |
 | `mkdir <DIRECTORY>`          | Create `DIRECTORY`                                                    |
 | `cp <SOURCE> <DEST>`         | Copy `SOURCE` to `DEST`                                               |
 | `mv <SOURCE> <DEST>`         | Rename `SOURCE` to `DEST`                                             |
-| `mv <SOURCE>` `<DIRECTORY>`    | Move `SOURCE` to `DIRECTORY`                                        |
+| `mv <SOURCE>` `<DIRECTORY>`  | Move `SOURCE` to `DIRECTORY`                                        |
 | `rm [-r] <FILE>`             | Remove `FILE`; -r remove directories                                  |
 
 \normalsize
@@ -152,9 +152,9 @@ header-includes: |
 
 ## Practice
 
-- Learn from the masters! [cowsay](https://en.wikipedia.org/wiki/Cowsay), [GitHub's mascot octocat](https://api.github.com/octocat), [ASCII Star wars](https://www.asciimation.co.nz/), ["Three ASCII art styles" by Roy/SAC](https://www.roysac.com/roy-sac_styles_of_underground_text_art.html)
+- Learn from the masters! [cowsay](https://en.wikipedia.org/wiki/Cowsay), [GitHub's mascot octocat](https://api.github.com/octocat), [ASCII Star wars](https://www.asciimation.co.nz/), ["Three ASCII art styles" by Roy/SAC](https://www.roysac.com/roy-sac_styles_of_underground_text_art.html), [inspirations.txt](inspirations.txt)
 
-- Copy and save a few works by others in separate files in `~/Others`, using shell. Get some inspiration
+- Copy and save a few works by others in separate files in `~/git_wksp/Others`, using shell. Get some inspiration
 
 ## Outlook
 
@@ -184,7 +184,7 @@ header-includes: |
 
 - For [FOCS](https://focs.ji.sjtu.edu.cn/git/), `EMAIL` must be your SJTU email
 
-- Refer to Pro Git p. 478 if you need to change the text editor Git uses. We recommend VS Code
+- Refer to Pro Git p. 478 if you need to change the text editor Git uses. We recommend nano and VS Code
 
 - Refer to [ssh_setup.pdf](ssh_setup.pdf) to set up your SSH keys with FOCS
 
@@ -202,6 +202,8 @@ A repository is:
 
 **Create a repository = Create a standardized `.git` folder**
 
+- **Warning: for each repo, either run `git init` or `git clone`, but never both
+
 - Use `git init` in local existing project directory
 
 - Use `git clone` to copy a remote (i.e. stored on a server) directory with all its files and histories (i.e. its `.git` folder) to your local computer
@@ -216,9 +218,7 @@ A repository is:
 
 \normalsize
 
-**Reminder:** Clone will automatically set the remote, so you needn't connect to the remote repo again after cloning.
-
-- Practice: `cd` to `~` and get your template files with `git clone`
+- Practice: `cd` to `~` and get your template files with `git clone REPO_URL_PLACEHOLDER`
 
 ## The three zones
 
