@@ -643,16 +643,10 @@ Example: merge `master` -> `fix`
 A---B---C---D (master)     A---B---C---D (master)
 ```
 
-<<<<<<< HEAD
-- `G` is a new commit containing all files' latest snapshots from `C` and `D`.
+- `G` is a new commit containing all files' latest snapshots from `F` and `D`.
 - Keeps complete historical records. (non-destructive)
 
 **TIP:** Use `-m` option when performing `git merge` to specify your custom merge commit message.
-=======
-- `G` is a new commit containing all files' latest snapshots from `F` and `D`.
-- Keeps complete historical records.
-- Non destructive operation.
->>>>>>> 7c5806c (fix: format and add some clarifications)
 
 ## Merge vs. Rebase
 
@@ -808,7 +802,11 @@ The content between `=======` and `>>>>>>> branch-name` is from the branch you'r
 
 \vspace{-12pt}
 
+<<<<<<< HEAD
 - `git merge --continue`
+=======
+- Run `git merge --continue` or `git rebase --continue`(you may encounter > 1 conflicts during rebase)
+>>>>>>> f8b4295 (fix: add rebase conflict)
 
 \normalsize
 
@@ -890,7 +888,7 @@ Targets:
 
 **3. Conflicts during merge:**
 
-- Solution: Manually edit conflicted files to resolve conflicts (look for `<<<<<<<`, `=======`, `>>>>>>>` markers), then add and commit the resolved files
+- Solution: Please refer to **Solving conflicts in Git** section.  
 
 ---
 
