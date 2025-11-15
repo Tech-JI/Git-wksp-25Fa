@@ -367,9 +367,9 @@ sequenceDiagram
 
 \small
 
-| Command         | Function                            |
-| --------------- | ----------------------------------- |
-| `git status`    | Show status of files                |
+| Command      | Function             |
+| ------------ | -------------------- |
+| `git status` | Show status of files |
 
 ## `git status`
 
@@ -425,6 +425,88 @@ This command is a powerful tool for code review and debugging!
 - “HEAD -> master”: You are currently in the master branch.
 - “origin/master”: Your local master branch is synchronized with the master branch of the remote repository.
 
+# Undoing changes in Git
+
+Git provides several ways to undo changes depending on where you are in the workflow:
+
+**Undoing changes in the Working Directory**
+
+```
+git restore <file>
+```
+
+**Unstage a file** (i.e. put file change back to working directory)
+
+```
+git restore --staged <file>
+```
+
+## Undoing changes in Git
+
+**Undoing commits** (locally only!)
+
+- Soft Reset: Moves the branch pointer back but keeps changes in staging area
+
+Before:
+
+```
+A---B---C
+        ^
+      HEAD
+```
+
+After `git reset --soft HEAD~1`:
+
+```
+A---B---C
+    ^
+  HEAD
+```
+
+`C`'s changes are put in staging area.
+
+## Undoing changes in Git
+
+- Mixed Reset: Moves the branch pointer back and keeps changes in working directory
+
+Before:
+
+```
+A---B---C
+        ^
+      HEAD
+```
+
+After `git reset --mixed HEAD~1`:
+
+```
+A---B---C
+    ^
+  HEAD
+```
+
+`C`'s changes are put in working directory.
+
+## Undoing Changes in Git
+
+- Hard Reset: Moves the branch pointer back and discards all changes
+
+Before:
+
+```
+A---B---C
+        ^
+      HEAD
+```
+
+After `git reset --hard HEAD~1`:
+
+```
+A---B
+    ^
+  HEAD
+```
+
 # About branches
 
 ## What are branches?
@@ -468,31 +550,35 @@ git log --graph --no-color --pretty=oneline --abbrev-commit
 
 ## Practice
 
-Create a branch structure like this in your Survival Guide repository:
+**Exercise 3** Branch and Modification II
 
-```
-          G---H---I (fix-grammar)
-         /
-        F (new-point-a)
-       /
-      /       J---K (new-point-b)
-     /       /
-A---B---C---D---E (master)
-```
+Targets:
+
+- Create a branch with your student ID number
+
+- Switch to the branch
+
+- Draw your own mascot design
+
+- Commit your changes
+
+- Push your commits to the remote repository
 
 ## Merge vs. Rebase
 
 Branches can be merged or rebased together to combine changes from multiple sources.
 
+Example: `master` -> `fix`
+
 **Merge**
 
 ```
-      E---F---G (fix)            E---F---G (fix)
-     /                 ==>      /         \
-A---B---C---D (master)     A---B---C---D---H (master)
+      E---F (fix)                E---F---G (fix)
+     /                 ==>      /       /
+A---B---C---D (master)     A---B---C---D (master)
 ```
 
-- `H` is a new commit containing all files' latest snapshots from `E`, `F` and `G`.
+- `G` is a new commit containing all files' latest snapshots from `C` and `D`.
 - Keeps complete historical records.
 - Non destructive operation.
 
@@ -500,14 +586,16 @@ A---B---C---D (master)     A---B---C---D---H (master)
 
 Branches can be merged or rebased together to combine changes from multiple sources.
 
+Example: `master` -> `fix`
+
 **Rebase**
 
 \small
 
 ```
-      E---F (fix)                E---F (fix)
-     /                 ==>      /
-A---B---C---D (master)     A---B---E'---F'---C---D (master)
+      E---F (fix)                        E'---F' (fix)
+     /                 ==>              /
+A---B---C---D (master)     A---B---C---D (master)
 ```
 
 \normalsize
@@ -515,7 +603,7 @@ A---B---C---D (master)     A---B---E'---F'---C---D (master)
 - `E'` has the same snapshot as `E`, `F'` has the same snapshot as `F`
 - Creates linear history and rewrite commit history.
 
-## What's this 'fast-forward' thing?
+## What's 'fast-forward'
 
 **Merge** (without fast-forward)
 \small
@@ -718,9 +806,11 @@ This is the content I want to keep
 
 - **Dedicated tools**: `meld`, `p4merge`, `bc` (Beyond Compare)
 
-# Other common Git issues and troubleshooting
+# Other common Git issues
 
 ## Common issues
+
+\small
 
 **0. The `.gitignore` file:**
 
@@ -743,166 +833,9 @@ This is the content I want to keep
 
 - Solution: Use `git stash` to save changes, switch to correct branch, then `git stash pop` to apply changes there
 
-## Common issues
-
 **5. Conflicts during merge:**
 
 - Solution: Manually edit conflicted files to resolve conflicts (look for `<<<<<<<`, `=======`, `>>>>>>>` markers), then add and commit the resolved files
-
-**6. How to undo things:**
-
-- To unstage a file: `git restore --staged <file>`
-- To discard changes in working directory: `git restore <file>`
-- To go back to a previous commit: `git reset --hard <commit-hash>` (**WARNING:** This is destructive!)
-
-## Undoing changes in Git
-
-Git provides several ways to undo changes depending on where you are in the workflow:
-
-### Undoing changes in the Working Directory
-
-\vspace{-8pt}
-
-`git restore <file>` (or `git checkout -- <file>` in older Git versions)
-
-### Unstaging a file
-
-\vspace{-8pt}
-
-`git restore --staged <file>` (or `git reset HEAD <file>` in older Git versions)
-
-## Undoing Changes in Git
-
-### Undoing commits (locally only!)
-
-\vspace{-8pt}
-
-**Soft Reset**: Moves the branch pointer back but keeps changes in staging area
-
-\footnotesize
-
-::: columns
-:::: {.column width=8%}
-::::
-:::: {.column width=20%}
-
-\centering
-
-Before:
-
-```
-A---B---C
-        ^
-      HEAD
-```
-
-::::
-:::: {.column width=64%}
-
-\centering
-
-After `git reset --soft HEAD~1`:
-
-```{.lstlisting framexleftmargin=-7em framexrightmargin=-7em}
-               A---B---C
-                   ^
-                 HEAD
-```
-
-::::
-:::: {.column width=8%}
-::::
-:::
-
-\begin{center}(\lstinline|C|'s changes in staging area)\end{center}
-
-\normalsize
-
-**Mixed Reset**: Moves the branch pointer back and keeps changes in working directory
-
-\footnotesize
-
-::: columns
-:::: {.column width=8%}
-::::
-:::: {.column width=20%}
-
-\centering
-
-Before:
-
-```
-A---B---C
-        ^
-      HEAD
-```
-
-::::
-:::: {.column width=64%}
-
-\centering
-
-After `git reset --mixed HEAD~1`:
-
-```{.lstlisting framexleftmargin=-7em framexrightmargin=-7em}
-               A---B---C
-                   ^
-                 HEAD
-```
-
-::::
-:::: {.column width=8%}
-::::
-:::
-
-\begin{center}(\lstinline|C|'s changes in working directory)\end{center}
-
-\normalsize
-
-## Undoing Changes in Git
-
-### Undoing commits (locally only!)
-
-\vspace{-8pt}
-
-**Hard Reset**: Moves the branch pointer back and discards all changes
-
-\footnotesize
-
-::: columns
-:::: {.column width=8%}
-::::
-:::: {.column width=20%}
-
-\centering
-
-Before:
-
-```
-A---B---C
-        ^
-      HEAD
-```
-
-::::
-:::: {.column width=64%}
-
-\centering
-
-After `git reset --hard HEAD~1`:
-
-```{.lstlisting framexleftmargin=-8em framexrightmargin=-8em}
-                 A---B
-                     ^
-                   HEAD
-```
-
-::::
-:::: {.column width=8%}
-::::
-:::
-
-\begin{center}(\lstinline|C|'s changes discarded)\end{center}
 
 \normalsize
 
