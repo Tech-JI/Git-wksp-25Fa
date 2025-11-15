@@ -62,7 +62,7 @@ git clone ssh://git@focs.ji.sjtu.edu.cn:2222/engr101s1/<repo>
 or
 
 ```sh
-$ git remote add origin \
+git remote add origin \
 ssh://git@focs.ji.sjtu.edu.cn:2222/engr101s1/<repo>
 ```
 
