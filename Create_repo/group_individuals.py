@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
 """
-Script to randomly group people from individual.txt into groups of 3,
+Script to sequentially group people from individual.txt into groups of 3,
 then append these new groups to the existing group.txt file.
 """
 
-import random
 import os
 from typing import List
 
 
-def group_individuals_to_file(individual_file: str = "individual.txt", 
-                             group_file: str = "group.txt", 
+def group_individuals_to_file(individual_file: str = "individual.txt",
+                             group_file: str = "group.txt",
                              group_size: int = 3):
     """
-    Randomly group people from individual.txt into groups of specified size,
+    Sequentially group people from individual.txt into groups of specified size,
     then append these new groups to the existing group.txt file.
 
     Args:
@@ -22,38 +21,37 @@ def group_individuals_to_file(individual_file: str = "individual.txt",
         group_size: Size of each group (default 3)
     """
     print(f"Reading individual accounts from {individual_file}")
-    
+
     # Read individual.txt to get all accounts
     if not os.path.exists(individual_file):
         print(f"Error: {individual_file} does not exist")
         return
-    
+
     accounts = []
     with open(individual_file, 'r', encoding='utf-8') as f:
         for line in f:
             account = line.strip()
             if account:
                 accounts.append(account)
-    
+
     print(f"Found {len(accounts)} accounts in individual.txt")
-    
+
     if len(accounts) < group_size:
         print(f"Warning: Not enough accounts to form a group of {group_size}. Need at least {group_size}, but only have {len(accounts)}")
         # If not enough accounts for a group, just keep them in individual.txt
         print("No new groups created due to insufficient accounts.")
         return
-    
-    # Shuffle the accounts randomly
-    random.shuffle(accounts)
-    print("Shuffled accounts randomly")
-    
-    # Create groups of specified size
+
+    # Don't shuffle the accounts, just group them sequentially
+    print("Grouping accounts sequentially (first 3, next 3, etc.)")
+
+    # Create groups of specified size sequentially
     new_groups = []
     for i in range(0, len(accounts), group_size):
         group = accounts[i:i + group_size]
         if len(group) == group_size:  # Only create full groups
             new_groups.append(group)
-    
+
     # Handle remaining accounts that don't form a complete group
     remaining_accounts = len(accounts) % group_size
     remaining = []

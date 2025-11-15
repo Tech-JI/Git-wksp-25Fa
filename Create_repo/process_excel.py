@@ -109,10 +109,100 @@ def process_excel_file(excel_path="group.xlsx", group_output="group.txt", indivi
     if missing_optional:
         logger.warning(f"Optional columns missing: {missing_optional}")
 
-    # Keep track of all participants (using account names instead of emails)
-    processed_accounts = set()
     # Dictionary to map names to accounts for checking against enrollment
     name_to_account = {}
+
+    # First pass: collect all groups and their members before writing
+    all_groups = []
+    all_individuals = []
+
+    for index, row in df.iterrows():
+        try:
+            # Get values from columns
+            j_email_value = row[col_j_email] if col_j_email in df.columns else None
+            j_account_value = row[col_j_account] if col_j_account in df.columns else None
+            l_value = row[col_l] if col_l in df.columns else None
+            m_value = row[col_m] if col_m in df.columns else None
+            n_value = row[col_n] if col_n in df.columns else None
+            name_value = row[col_name] if col_name in df.columns else None
+
+            # Determine account name to use
+            # Prefer the account column if available, otherwise extract from email
+            account_to_use = None
+            if pd.notna(j_account_value) and str(j_account_value).strip():
+                account_to_use = str(j_account_value).strip()
+            elif pd.notna(j_email_value) and is_valid_email(str(j_email_value).strip()):
+                # Extract account from email (part before @)
+                email_str = str(j_email_value).strip()
+                account_to_use = email_str.split('@')[0]
+
+            # Store name-account mapping for later comparison
+            if pd.notna(name_value) and str(name_value).strip() and account_to_use:
+                name_str = str(name_value).strip()
+                name_to_account[name_str] = account_to_use
+
+            # Check if l_value is not empty (not null and not empty string)
+            if pd.notna(l_value) and str(l_value).strip() != "":
+                # Process group: J + L, M, N (but convert to accounts where possible)
+                values_to_write = []
+
+                # Add account for J (primary person)
+                if account_to_use:
+                    values_to_write.append(account_to_use)
+
+                # For L, M, N, try to get accounts (these might be emails too)
+                for col_val in [l_value, m_value, n_value]:
+                    if pd.notna(col_val) and str(col_val).strip() != "":
+                        val_str = str(col_val).strip()
+                        # Check if this is an email to extract account from
+                        if is_valid_email(val_str):
+                            account_from_email = val_str.split('@')[0]
+                            values_to_write.append(account_from_email)
+                        else:
+                            # If not an email, treat as account directly (or try to extract from email format)
+                            # Check if it looks like an email that was stored as text
+                            if '@' in val_str:
+                                account_from_email = val_str.split('@')[0]
+                                values_to_write.append(account_from_email)
+                            else:
+                                values_to_write.append(val_str)
+
+                if values_to_write:  # Only add if there are non-empty values
+                    # Remove duplicates from the group
+                    unique_values = remove_duplicates_from_group(values_to_write)
+                    if unique_values:  # Only add if there are still values after deduplication
+                        all_groups.append((index, unique_values))
+            else:
+                # Track account for J for individual.txt
+                if account_to_use:
+                    all_individuals.append((index, account_to_use))
+
+        except Exception as e:
+            logger.error(f"Error processing row {index}: {e}")
+            continue
+
+    # Second pass: identify which groups have members that appear in later groups
+    groups_to_skip = set()
+    all_group_accounts = {}  # Maps index to set of accounts in that group
+
+    # Build mapping from group index to its accounts
+    for idx, group_accounts in all_groups:
+        all_group_accounts[idx] = set(acc.lower() for acc in group_accounts)
+
+    # For each group, check if any of its members appear in later groups
+    for i in range(len(all_groups)):
+        current_idx, current_accounts = all_groups[i]
+        current_accounts_lower = [acc.lower() for acc in current_accounts]
+
+        # Check if any account in current group appears in any later group
+        for j in range(i + 1, len(all_groups)):
+            later_idx, later_accounts = all_groups[j]
+            later_accounts_set = set(acc.lower() for acc in later_accounts)
+
+            # Check for overlap between current and later group
+            if any(acc in later_accounts_set for acc in current_accounts_lower):
+                groups_to_skip.add(current_idx)
+                logger.info(f"Group at index {current_idx} will be skipped due to duplicate members in later group at index {later_idx}")
 
     # Process the main Excel file
     with open(group_output, 'w', encoding='utf-8') as group_file, \
@@ -122,82 +212,22 @@ def process_excel_file(excel_path="group.xlsx", group_output="group.txt", indivi
         group_entries = 0
         individual_entries = 0
 
-        for index, row in df.iterrows():
-            try:
-                # Get values from columns
-                j_email_value = row[col_j_email] if col_j_email in df.columns else None
-                j_account_value = row[col_j_account] if col_j_account in df.columns else None
-                l_value = row[col_l] if col_l in df.columns else None
-                m_value = row[col_m] if col_m in df.columns else None
-                n_value = row[col_n] if col_n in df.columns else None
-                name_value = row[col_name] if col_name in df.columns else None
+        # Write groups that are not marked for skipping
+        for idx, group_accounts in all_groups:
+            if idx not in groups_to_skip:
+                group_file.write(' '.join(group_accounts) + '\n')
+                group_entries += 1
+                logger.info(f"Row {idx}: Added to {group_output} - {group_accounts}")
+            else:
+                logger.info(f"Row {idx}: Skipped group due to duplicate members in later groups")
 
-                # Determine account name to use
-                # Prefer the account column if available, otherwise extract from email
-                account_to_use = None
-                if pd.notna(j_account_value) and str(j_account_value).strip():
-                    account_to_use = str(j_account_value).strip()
-                elif pd.notna(j_email_value) and is_valid_email(str(j_email_value).strip()):
-                    # Extract account from email (part before @)
-                    email_str = str(j_email_value).strip()
-                    account_to_use = email_str.split('@')[0]
+        # Write all individual entries
+        for idx, account in all_individuals:
+            individual_file.write(account + '\n')
+            individual_entries += 1
+            logger.info(f"Row {idx}: Added to {individual_output} - {account}")
 
-                # Store name-account mapping for later comparison
-                if pd.notna(name_value) and str(name_value).strip() and account_to_use:
-                    name_str = str(name_value).strip()
-                    name_to_account[name_str] = account_to_use
-
-                # Check if l_value is not empty (not null and not empty string)
-                if pd.notna(l_value) and str(l_value).strip() != "":
-                    # Process group: J + L, M, N (but convert to accounts where possible)
-                    values_to_write = []
-
-                    # Add account for J (primary person)
-                    if account_to_use:
-                        values_to_write.append(account_to_use)
-
-                    # For L, M, N, try to get accounts (these might be emails too)
-                    for col_val in [l_value, m_value, n_value]:
-                        if pd.notna(col_val) and str(col_val).strip() != "":
-                            val_str = str(col_val).strip()
-                            # Check if this is an email to extract account from
-                            if is_valid_email(val_str):
-                                account_from_email = val_str.split('@')[0]
-                                values_to_write.append(account_from_email)
-                            else:
-                                # If not an email, treat as account directly (or try to extract from email format)
-                                # Check if it looks like an email that was stored as text
-                                if '@' in val_str:
-                                    account_from_email = val_str.split('@')[0]
-                                    values_to_write.append(account_from_email)
-                                else:
-                                    values_to_write.append(val_str)
-
-                    if values_to_write:  # Only write if there are non-empty values
-                        # Remove duplicates from the group
-                        unique_values = remove_duplicates_from_group(values_to_write)
-
-                        if unique_values:  # Only write if there are still values after deduplication
-                            group_file.write(' '.join(unique_values) + '\n')
-                            group_entries += 1
-                            logger.info(f"Row {index}: Added to {group_output} - {unique_values}")
-                            # Add all accounts from this group to the set
-                            for account in unique_values:
-                                processed_accounts.add(account.lower())
-                else:
-                    # Write account for J to individual.txt
-                    if account_to_use:
-                        individual_file.write(account_to_use + '\n')
-                        individual_entries += 1
-                        logger.info(f"Row {index}: Added to {individual_output} - {account_to_use}")
-                        # Add to the set of processed accounts
-                        processed_accounts.add(account_to_use.lower())
-
-                processed_rows += 1
-
-            except Exception as e:
-                logger.error(f"Error processing row {index}: {e}")
-                continue
+        processed_rows = len(all_groups) + len(all_individuals)
 
     # Now, process enrollment file to find missing participants and add them to individual.txt
     if enrollment_path and os.path.exists(enrollment_path):
@@ -287,7 +317,7 @@ def add_missing_enrollment_participants(enrollment_path, group_output, individua
     try:
         existing_accounts = set()
 
-        # Read group.txt
+        # Read group.txt - at this point, it contains the final groups after our duplicate processing
         if os.path.exists(group_output):
             with open(group_output, 'r', encoding='utf-8') as f:
                 for line in f:
@@ -299,7 +329,7 @@ def add_missing_enrollment_participants(enrollment_path, group_output, individua
                             if account.strip():
                                 existing_accounts.add(account.strip().lower())
 
-        # Read individual.txt
+        # Read individual.txt - at this point, it contains the final individuals
         if os.path.exists(individual_output):
             with open(individual_output, 'r', encoding='utf-8') as f:
                 for line in f:
