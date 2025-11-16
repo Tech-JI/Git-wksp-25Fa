@@ -527,7 +527,7 @@ git restore --staged <file>
 
 - Hard Reset: Moves the branch pointer back and discards all changes
 
-- E.g. `git reset --haed HEAD~1`:
+- E.g. `git reset --hard HEAD~1`:
 
 ```
         A---B---C        ==>        A---B
