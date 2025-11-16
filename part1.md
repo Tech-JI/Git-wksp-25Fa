@@ -225,11 +225,9 @@ A repository is:
 
 Targets:
 
-- Change directory to `~`, i.e. home directory
+- Change directory to `~/git_wksp`
 
 - Clone your remote repository to local
-
-- Configure your name and email
 
 ## The three zones
 
@@ -537,7 +535,7 @@ git restore --staged <file>
               HEAD                    HEAD
 ```
 
-Final result:
+`C`'s changes completely deleted. Final result:
 
 \footnotesize
 
@@ -558,8 +556,6 @@ Final result:
 - Same goes for `HEAD~n`
 
 - More information: [Pro Git Chapter 7.1](https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection)
-
-`C`'s changes completely deleted.
 
 # About branches
 
