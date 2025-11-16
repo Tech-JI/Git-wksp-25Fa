@@ -96,7 +96,7 @@ git rebase
    Git Wksp 2025
 ```
 
-💡Note: his is merely an example. Feel free to deviate completely from it — let your imagination flow and guide you anywhere. We can't wait to see the unique creations you'll bring to life!
+💡Note: This is merely an example. Feel free to deviate completely from it — let your imagination flow and guide you anywhere. We can't wait to see the unique creations you'll bring to life!
 
 ---
 
