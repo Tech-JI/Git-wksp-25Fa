@@ -449,6 +449,20 @@ git clone / git init -> git status -> edit -> git add
 
 ![When you commit before add](img/commit_before_add.png){ width=150px }
 
+## Practice
+
+**Exercise 2: Modification I**
+
+Targets:
+
+- Add author name (i.e. your own name) to your mascot file
+
+- Check the status of the local repository
+
+- Check the changes (diff) you have made
+
+- Commit your changes
+
 # Undoing changes in Git
 
 Git provides several ways to undo changes depending on where you are in the workflow:
@@ -546,20 +560,6 @@ Final result:
 - More information: [Pro Git Chapter 7.1](https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection)
 
 `C`'s changes completely deleted.
-
-## Practice
-
-**Exercise 2: Modification I**
-
-Targets:
-
-- Add author name (i.e. your own name) to your mascot file
-
-- Check the status of the local repository
-
-- Check the changes (diff) you have made
-
-- Commit your changes
 
 # About branches
 
