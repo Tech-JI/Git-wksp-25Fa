@@ -44,12 +44,17 @@ git status
 git add
 git diff
 git commit
-git reset
 ```
 
 ### **Exercise 3 : Branch & Modification II**
 
 > 🎨 _Create your own mascot!_
+
+- **Undo commit and save your changes to the staging area.** Recommended Command:
+
+```
+git reset
+```
 
 - **Create and switch branches.** Recommended Commands:
 
