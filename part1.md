@@ -449,12 +449,6 @@ git clone / git init -> git status -> edit -> git add
 
 ![When you commit before add](img/commit_before_add.png){ width=150px }
 
-
-
-
-
-
-
 # Undoing changes in Git
 
 Git provides several ways to undo changes depending on where you are in the workflow:
@@ -555,7 +549,7 @@ Final result:
 
 ## Practice
 
-**Exercise 2 Modification I**  
+**Exercise 2: Modification I**
 
 Targets:
 
@@ -825,10 +819,7 @@ The content between `=======` and `>>>>>>> branch-name` is from the branch you'r
 
 \vspace{-12pt}
 
-
-
 - Run `git merge --continue` or `git rebase --continue`(you may encounter > 1 conflicts during rebase)
-
 
 \normalsize
 
