@@ -24,11 +24,10 @@ _SSH Setup_: Refer to [ssh_setup.pdf](ssh_setup.pdf)
 
 > 📥 _Get the template of the mascot._
 
-- **Create and connect repository.** Recommended Commands:
+- **connect to remote repository.** Recommended Commands:
 
 ```
 git config
-git init
 git clone
 ```
 
@@ -45,6 +44,7 @@ git status
 git add
 git diff
 git commit
+git reset
 ```
 
 ### **Exercise 3 : Branch & Modification II**
@@ -54,7 +54,6 @@ git commit
 - **Create and switch branches.** Recommended Commands:
 
 ```
-git reset
 git branch
 git checkout
 ```

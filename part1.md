@@ -57,7 +57,7 @@ header-includes: |
 
 - [sindresorhus/awesome](https://github.com/sindresorhus/awesome): an online Git repository containing everything you'll ever need to self-study any subject in Computer Science
 
-- It's our turn! GC has a blue tiger mascot right now, but let's get creative. We're gonna design our own ASCII art GC mascot with Git. Template files are at REPO_URL_PLACEHOLDER
+- It's our turn! GC has a blue tiger mascot right now, but let's get creative. We're gonna design our own ASCII art GC mascot with Git. Template files are at [tests](https://focs.ji.sjtu.edu.cn/git/tests).
 
 ## Enter shell
 
