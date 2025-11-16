@@ -561,8 +561,6 @@ Targets:
 
 - Commit your changes
 
-- Undo your commit (put changes in staging area)
-
 # About branches
 
 ## What are branches?
@@ -637,6 +635,8 @@ git log --graph --no-color --pretty=oneline --abbrev-commit
 **Exercise 3: Branch and Modification II**
 
 Targets:
+
+- Undo your commit (put changes in staging area)
 
 - Create a branch with your student ID number
 
